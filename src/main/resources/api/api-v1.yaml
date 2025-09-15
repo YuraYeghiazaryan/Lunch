@@ -1,0 +1,78 @@
+---
+openapi: 3.0.1
+info:
+  title: Lunch service API
+  version: v1
+
+servers:
+  - url: /api/v1
+
+paths:
+  "/user/{id}":
+    get:
+      operationId: getUser
+      description: Get user by id
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - $ref: '#/components/parameters/UserIdPath'
+      responses:
+        "200":
+          description: User model
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDto"
+      tags:
+        - user
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    UserRoleDto:
+      description: User role enum
+      type: string
+      enum:
+        - ADMIN
+        - USER
+
+    UserDto:
+      description: User object
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        role:
+          $ref: "#/components/schemas/UserRoleDto"
+        firstName:
+          type: string
+        lastName:
+          type: string
+        username:
+          type: string
+
+
+    # Authentication
+    CredentialsDto:
+      description: User sign-in credentials
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+
+  parameters:
+    UserIdPath:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64

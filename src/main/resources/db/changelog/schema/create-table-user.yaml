@@ -1,0 +1,60 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-role-type
+      author: Yura Yeghiazaryan
+      changes:
+        - sql:
+            dbms: '!h2,  oracle,  mysql, postgresql'
+            endDelimiter: \n
+            splitStatements: true
+            sql: CREATE TYPE role_type AS ENUM('ADMIN', 'USER');
+            stripComments: true
+
+  - changeSet:
+      id: create-table-user
+      author: Yura Yeghiazaryan
+      changes:
+        - createSequence:
+            sequenceName: user_seq
+            startValue: 1
+            incrementBy: 1
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  defaultValueComputed: "nextval('user_seq')"
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: role
+                  type: role_type
+                  constraints:
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
