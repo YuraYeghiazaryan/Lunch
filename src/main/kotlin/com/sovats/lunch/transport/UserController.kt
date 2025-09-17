@@ -15,7 +15,7 @@ class UserController(
 ): UserApi {
 
     override fun getUser(id: Long): ResponseEntity<UserDto> {
-        val user = this.userService.getUser(id)
+        val user = this.userService.getUserById(id)
         val userDto: UserDto = this.conversionService.convert(user, UserDto::class.java)
             ?: throw IllegalArgumentException("User $user can't be converted to the UserDto.")
 

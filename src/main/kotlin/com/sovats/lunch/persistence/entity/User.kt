@@ -15,17 +15,15 @@ class User (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    @Column
+    @Column(name = "email")
     val email: String,
 
-    @Column
-    val username: String,
-
-    @Column
+    @Column(name = "password")
     val password: String,
 
+    @Column(name = "firstName")
     val firstName: String,
-    val lastName: String,
 
-){
-}
+    @Column(name = "lastName")
+    val lastName: String,
+)

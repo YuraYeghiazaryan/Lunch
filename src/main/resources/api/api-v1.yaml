@@ -46,6 +46,26 @@ paths:
       tags:
         - auth
 
+  "/auth/signin":
+    post:
+      operationId: singIn
+      description: sign in
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SignInDto"
+      responses:
+        "200":
+          description: User is logged in
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDto"
+      tags:
+        - auth
+
 components:
   securitySchemes:
     BearerAuth:
@@ -69,7 +89,6 @@ components:
         - id
         - firstName
         - lastName
-        - username
         - email
       properties:
         id:
@@ -79,8 +98,6 @@ components:
           type: string
         lastName:
           type: string
-        username:
-          type: string
         email:
           type: string
 
@@ -88,14 +105,11 @@ components:
       description: Data for user registration
       type: object
       required:
-        - username
         - password
         - firstName
         - lastName
         - email
       properties:
-        username:
-          type: string
         password:
           type: string
         firstName:
@@ -105,12 +119,14 @@ components:
         email:
           type: string
 
-    # Authentication
-    CredentialsDto:
-      description: User sign-in credentials
+    SignInDto:
+      description: Data for user sign in
       type: object
+      required:
+        - email
+        - password
       properties:
-        username:
+        email:
           type: string
         password:
           type: string

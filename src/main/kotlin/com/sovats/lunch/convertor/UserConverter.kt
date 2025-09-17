@@ -14,7 +14,6 @@ class UserToDtoConverter() : Converter<User, UserDto> {
             id = from.id!!,
             firstName = from.firstName,
             lastName = from.lastName,
-            username = from.username,
             email = from.email,
         )
     }

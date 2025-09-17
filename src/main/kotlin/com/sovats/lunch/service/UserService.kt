@@ -9,9 +9,8 @@ class UserService(
     private val userRepository: UserRepository,
 ) {
 
-    fun createUser(username: String, password: String, firstName: String, lastName: String, email: String): User {
+    fun createUser(password: String, firstName: String, lastName: String, email: String): User {
         val user = User(
-            username = username,
             password = password,
             firstName = firstName,
             lastName = lastName,
@@ -21,7 +20,11 @@ class UserService(
         return this.userRepository.save(user)
     }
 
-    fun getUser(id: Long): User {
+    fun getUserById(id: Long): User {
         return this.userRepository.findById(id).get()
+    }
+
+    fun findUserByEmail(email: String): User? {
+        return this.userRepository.findByEmail(email)
     }
 }

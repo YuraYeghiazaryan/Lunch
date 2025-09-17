@@ -1,6 +1,7 @@
 package com.sovats.lunch.transport
 
 import com.sovats.lunch.api.AuthApi
+import com.sovats.lunch.model.SignInDto
 import com.sovats.lunch.model.SignupDto
 import com.sovats.lunch.model.UserDto
 import com.sovats.lunch.persistence.entity.User
@@ -17,12 +18,11 @@ class AuthController(
 
     override fun signup(signupDto: SignupDto): ResponseEntity<UserDto> {
         val savedUser: User = this.userService.createUser(
-            signupDto.username,
             signupDto.password,
             signupDto.firstName,
             signupDto.lastName,
             signupDto.email,
-            )
+        )
 
         // Map User Entity -> UserDto
         val savedUserDto: UserDto = conversionService.convert(savedUser, UserDto::class.java)
@@ -30,4 +30,18 @@ class AuthController(
 
         return ResponseEntity.status(201).body(savedUserDto)
     }
+
+    override fun singIn(signInDto: SignInDto): ResponseEntity<UserDto> {
+        val user: User = this.userService.findUserByEmail(signInDto.email)
+            ?: return ResponseEntity.badRequest().body(null)
+
+        if (user.password != signInDto.password) {
+            return ResponseEntity.badRequest().body(null)
+        }
+
+        val userDto: UserDto = conversionService.convert(user, UserDto::class.java)
+            ?: throw IllegalArgumentException("User can't be converted to the UserDto.")
+
+        return ResponseEntity.ok().body(userDto)
+     }
 }
