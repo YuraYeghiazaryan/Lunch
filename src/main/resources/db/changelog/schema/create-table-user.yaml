@@ -29,11 +29,6 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: role
-                  type: role_type
-                  constraints:
-                    nullable: false
-              - column:
                   name: first_name
                   type: varchar(255)
                   constraints:
