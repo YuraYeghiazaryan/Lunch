@@ -1,0 +1,80 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-team
+      author: Yura Yeghiazaryan
+      changes:
+        - createSequence:
+            sequenceName: team_seq
+            startValue: 1
+            incrementBy: 1
+        - createTable:
+            tableName: team
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  defaultValueComputed: "nextval('team_seq')"
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: created_by_user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: create-table-team-members
+      author: Yura Yeghiazaryan
+      changes:
+        - createTable:
+            tableName: team_members
+            columns:
+              - column:
+                  name: team_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: role_type
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            tableName: team_members
+            columnNames: team_id, user_id
+            constraintName: pk_team_members
+
+        - addForeignKeyConstraint:
+            baseTableName: team_members
+            baseColumnNames: team_id
+            referencedTableName: team
+            referencedColumnNames: id
+            constraintName: fk_team_members_team
+
+        - addForeignKeyConstraint:
+            baseTableName: team_members
+            baseColumnNames: user_id
+            referencedTableName: user
+            referencedColumnNames: id
+            constraintName: fk_team_members_user
+
+        - addForeignKeyConstraint:
+            baseTableName: team
+            baseColumnNames: created_by_user_id
+            referencedTableName: user
+            referencedColumnNames: id
+            constraintName: fk_team_created_by_user
+
+
