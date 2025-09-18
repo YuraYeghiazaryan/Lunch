@@ -18,12 +18,12 @@ class RoleToDtoConverter : Converter<UserRole, UserRoleDto> {
 }
 
 @Component
-class DtoToRoleConverter : Converter<UserRole, UserRoleDto> {
-    override fun convert(from: UserRole): UserRoleDto {
+class DtoToRoleConverter : Converter<UserRoleDto, UserRole> {
+    override fun convert(from: UserRoleDto): UserRole {
         return when (from) {
-            UserRole.ADMIN -> UserRoleDto.ADMIN
-            UserRole.USER -> UserRoleDto.USER
-            UserRole.GUEST -> UserRoleDto.GUEST
+            UserRoleDto.ADMIN -> UserRole.ADMIN
+            UserRoleDto.USER -> UserRole.USER
+            UserRoleDto.GUEST -> UserRole.GUEST
         }
     }
 }
