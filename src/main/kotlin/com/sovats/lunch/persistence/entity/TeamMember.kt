@@ -30,7 +30,7 @@ class TeamMember(
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    val role: UserRole
+    var role: UserRole
 )
 
 data class TeamMemberId(
