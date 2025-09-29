@@ -18,6 +18,9 @@ class Team(
     @SequenceGenerator(name = "team_seq_gen", sequenceName = "team_seq", allocationSize = 1)
     val id: Long? = null,
 
+    @Column(nullable = false)
+    val name: String,
+
     @Column(name = "created_by_user_id", nullable = false)
     val createdByUserId: Long,
 
