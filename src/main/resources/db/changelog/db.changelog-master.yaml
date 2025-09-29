@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/schema/create-table-user.yaml
   - include:
       file: db/changelog/schema/create-table-team.yaml
+  - include:
+      file: db/changelog/schema/create-table-team-mem bers.yaml
