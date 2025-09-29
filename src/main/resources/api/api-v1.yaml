@@ -85,11 +85,6 @@ components:
     UserDto:
       description: User object
       type: object
-      required:
-        - id
-        - firstName
-        - lastName
-        - email
       properties:
         id:
           type: integer
@@ -100,15 +95,15 @@ components:
           type: string
         email:
           type: string
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
 
     SignupDto:
       description: Data for user registration
       type: object
-      required:
-        - password
-        - firstName
-        - lastName
-        - email
       properties:
         password:
           type: string
@@ -118,18 +113,23 @@ components:
           type: string
         email:
           type: string
+      required:
+        - password
+        - firstName
+        - lastName
+        - email
 
     SignInDto:
       description: Data for user sign in
       type: object
-      required:
-        - email
-        - password
       properties:
         email:
           type: string
         password:
           type: string
+      required:
+        - email
+        - password
 
   parameters:
     UserIdPath:
