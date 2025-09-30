@@ -8,6 +8,7 @@ import com.sovats.lunch.persistence.repository.TeamMemberRepository
 import com.sovats.lunch.persistence.repository.TeamRepository
 import com.sovats.lunch.persistence.repository.UserRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class TeamService(
@@ -15,6 +16,7 @@ class TeamService(
     private val teamRepository: TeamRepository,
     private val teamMemberRepository: TeamMemberRepository
 ) {
+    @Transactional
     fun createTeam(name: String, createdByUserId: Long): Team {
         val user: User =
             this.userRepository.findUserById(createdByUserId)

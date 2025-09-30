@@ -18,7 +18,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: role
-                  type: role_type
+                  type: varchar(50)
                   constraints:
                     nullable: false
 

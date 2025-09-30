@@ -34,6 +34,6 @@ class TeamMember(
 )
 
 data class TeamMemberId(
-    val teamId: Long = 0,
-    val userId: Long = 0
+    val team: Long = 0,
+    val user: Long = 0
 ) : Serializable

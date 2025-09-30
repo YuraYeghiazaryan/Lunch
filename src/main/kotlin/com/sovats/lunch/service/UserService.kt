@@ -14,7 +14,8 @@ class UserService(
             password = password,
             firstName = firstName,
             lastName = lastName,
-            email = email
+            email = email,
+            teamMemberships = mutableSetOf()
         )
 
         return this.userRepository.save(user)

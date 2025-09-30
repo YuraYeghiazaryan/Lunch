@@ -22,7 +22,7 @@ class Team(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    @Column(nullable = false)
+    @Column(name = "name")
     val name: String,
 
     @JoinColumn(name = "created_by_user_id")
