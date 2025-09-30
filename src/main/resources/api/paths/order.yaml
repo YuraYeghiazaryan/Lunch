@@ -1,7 +1,7 @@
-createOrder:
+toOrder:
   post:
-    operationId: createOrder
-    description: Create a new order
+    operationId: toOrder
+    description: To order
     parameters:
       - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/OrderIdPath"
@@ -12,7 +12,7 @@ createOrder:
           $ref: "../components/schemas.yaml#/OrderStatusDto"
     responses:
       '201':
-        description: Order successfully created
+        description: Order successfully done
         content:
           application/json:
             schema:
