@@ -22,3 +22,11 @@ TeamIdPath:
   schema:
     type: integer
     format: int64
+
+OrderIdPath:
+  name: orderId
+  in: path
+  required: true
+  schema:
+    type: integer
+    format: int64

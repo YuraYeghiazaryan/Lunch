@@ -86,3 +86,37 @@ UserIdsDto:
       items:
         type: integer
         format: int64
+
+OrderDto:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    teamId:
+      type: integer
+      format: int64
+    createdByUserId:
+      type: integer
+      format: int64
+    status:
+      $ref: "#/OrderStatusDto"
+    createdAt:
+      type: string
+      format: date-time
+    contextUrl:
+      type: string
+  required:
+    - id
+    - teamId
+    - createByUserId
+    - status
+    - createdAt
+    - contextUrl
+
+OrderStatusDto:
+  description: Order status enum
+  type: string
+  enum:
+    - IN_PROGRESS
+    - ORDERED

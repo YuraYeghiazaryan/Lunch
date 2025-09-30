@@ -1,0 +1,23 @@
+createOrder:
+  post:
+    operationId: createOrder
+    description: Create a new order
+    parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
+      - $ref: "../components/parameters.yaml#/OrderIdPath"
+      - name: role
+        in: path
+        required: true
+        schema:
+          $ref: "../components/schemas.yaml#/OrderStatusDto"
+    responses:
+      '201':
+        description: Order successfully created
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas.yaml#/OrderDto"
+      '400':
+        description: Invalid input
+    tags:
+      - order
