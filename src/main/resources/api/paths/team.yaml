@@ -1,0 +1,23 @@
+team:
+  post:
+    operationId: createTeam
+    description: Create a new Team
+    parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas.yaml#/CreateTeamRequest"
+    responses:
+      '201':
+        description: Team successfully created
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas.yaml#/TeamDto"
+      '400':
+        description: Invalid input
+    tags:
+      - team

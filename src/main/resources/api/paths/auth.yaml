@@ -1,0 +1,39 @@
+signup:
+  post:
+    operationId: signup
+    description: Register a new user
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas.yaml#/SignupDto"
+    responses:
+      "201":
+        description: User created
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas.yaml#/UserDto"
+    tags:
+      - auth
+
+signIn:
+  post:
+    operationId: singIn
+    description: sign in
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas.yaml#/SignInDto"
+    responses:
+      "200":
+        description: User is logged in
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas.yaml#/UserDto"
+    tags:
+      - auth

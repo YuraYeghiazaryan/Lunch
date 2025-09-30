@@ -1,0 +1,17 @@
+getUser:
+  get:
+    operationId: getUser
+    description: Get user by id
+    security:
+      - BearerAuth: [ ]
+    parameters:
+      - $ref: "../components/parameters.yaml#/UserIdPath"
+    responses:
+      "200":
+        description: User model
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas.yaml#/UserDto"
+    tags:
+      - user

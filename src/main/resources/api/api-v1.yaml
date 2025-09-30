@@ -9,190 +9,42 @@ servers:
 
 paths:
   /user/{id}:
-    get:
-      operationId: getUser
-      description: Get user by id
-      security:
-        - BearerAuth: [ ]
-      parameters:
-        - $ref: '#/components/parameters/UserIdPath'
-      responses:
-        "200":
-          description: User model
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/UserDto"
-      tags:
-        - user
+    $ref: "./paths/user.yaml#/getUser"
 
   /auth/signup:
-    post:
-      operationId: signup
-      description: Register a new user
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/SignupDto"
-      responses:
-        "201":
-          description: User created
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/UserDto"
-      tags:
-        - auth
+    $ref: "./paths/auth.yaml#/signup"
 
   /auth/signin:
-    post:
-      operationId: singIn
-      description: sign in
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/SignInDto"
-      responses:
-        "200":
-          description: User is logged in
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/UserDto"
-      tags:
-        - auth
+    $ref: "./paths/auth.yaml#/signIn"
 
   /teams:
-    post:
-      operationId: createTeam
-      description: Create a new Team
-      parameters:
-        - $ref: "#/components/parameters/UserIdHeader"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CreateTeamRequest"
-      responses:
-        '201':
-          description: Team successfully created
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/TeamDto"
-        '400':
-          description: Invalid input
-      tags:
-        - team
+    $ref: "./paths/team.yaml#/team"
+
 
 components:
-  securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-
   schemas:
     UserRoleDto:
-      description: User role enum
-      type: string
-      enum:
-        - ADMIN
-        - USER
-        - GUEST
+      $ref: "./components/schemas.yaml#/UserRoleDto"
 
     UserDto:
-      description: User object
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-      required:
-        - id
-        - firstName
-        - lastName
-        - email
+      $ref: "./components/schemas.yaml#/UserDto"
 
     SignupDto:
-      description: Data for user registration
-      type: object
-      properties:
-        password:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-      required:
-        - password
-        - firstName
-        - lastName
-        - email
+      $ref: "./components/schemas.yaml#/SignupDto"
 
     SignInDto:
-      description: Data for user sign in
-      type: object
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-      required:
-        - email
-        - password
+      $ref: "./components/schemas.yaml#/SignInDto"
 
     CreateTeamRequest:
-      type: object
-      properties:
-        name:
-          type: string
-      required:
-        - name
+      $ref: "./components/schemas.yaml#/CreateTeamRequest"
 
     TeamDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        createdByUserId:
-          type: integer
-          format: int64
-        createdAt:
-          type: string
-          format: date-time
+      $ref: "./components/schemas.yaml#/TeamDto"
 
 
   parameters:
     UserIdPath:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
+      $ref: "./components/parameters.yaml#/UserIdPath"
 
     UserIdHeader:
-      name: X-User-Id
-      in: header
-      required: true
-      schema:
-        type: integer
-        format: int64
-      description: ID of the user creating the team
+      $ref: "./components/parameters.yaml#/UserIdHeader"

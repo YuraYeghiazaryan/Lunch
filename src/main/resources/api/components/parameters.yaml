@@ -1,0 +1,16 @@
+UserIdPath:
+  name: id
+  in: path
+  required: true
+  schema:
+    type: integer
+    format: int64
+
+UserIdHeader:
+  name: X-User-Id
+  in: header
+  required: true
+  schema:
+    type: integer
+    format: int64
+  description: ID of the user creating the team
