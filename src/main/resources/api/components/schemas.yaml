@@ -47,7 +47,7 @@ SignInDto:
     - email
     - password
 
-CreateTeamRequest:
+TeamDetailsDto:
   type: object
   properties:
     name:

@@ -1,4 +1,4 @@
-team:
+createTeam:
   post:
     operationId: createTeam
     description: Create a new Team
@@ -9,7 +9,7 @@ team:
       content:
         application/json:
           schema:
-            $ref: "../components/schemas.yaml#/CreateTeamRequest"
+            $ref: "../components/schemas.yaml#/TeamDetailsDto"
     responses:
       '201':
         description: Team successfully created
@@ -22,7 +22,7 @@ team:
     tags:
       - team
 
-teamMembers:
+manageTeamMembers:
   post:
     operationId: addTeamMembers
     description: Add users to a team
@@ -61,3 +61,51 @@ teamMembers:
         description: Invalid input
     tags:
       - team
+
+manageTeamMembersRole:
+  put:
+    operationId: setTeamMemberRole
+    description: Set team member role
+    parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
+      - $ref: "../components/parameters.yaml#/TeamIdPath"
+      - name: role
+        in: path
+        required: true
+        schema:
+          $ref: "../components/schemas.yaml#/UserRoleDto"
+    response:
+      200:
+        description: Team member role successfully edited
+      400:
+        description: Team member with provided id does not found in provided team
+
+manageTeamDetails:
+  patch:
+    operationId: editTeamDetails
+    description: Edit team details
+    parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
+      - $ref: "../components/parameters.yaml#/TeamIdPath"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas.yaml#/TeamDetailsDto"
+    responses:
+      200:
+        description: Team details successfully edited
+      400:
+        description: Team with provided id does not found
+  delete:
+    operationId: deleteTeam
+    description: Delete team
+    parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
+      - $ref: "../components/parameters.yaml#/TeamIdPath"
+    responses:
+      200:
+        description: Team successfully deleted
+      400:
+        description: Team with provided id does not found or already deleted

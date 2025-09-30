@@ -18,35 +18,13 @@ paths:
     $ref: "./paths/auth.yaml#/signIn"
 
   /team:
-    $ref: "./paths/team.yaml#/team"
+    $ref: "./paths/team.yaml#/createTeam"
 
   /team/{teamId}/members:
-    $ref: "./paths/team.yaml#/teamMembers"
+    $ref: "./paths/team.yaml#/manageTeamMembers"
 
-components:
-  schemas:
-    UserRoleDto:
-      $ref: "./components/schemas.yaml#/UserRoleDto"
+  /team/{teamId}:
+    $ref: "./paths/team.yaml#/manageTeamDetails"
 
-    UserDto:
-      $ref: "./components/schemas.yaml#/UserDto"
-
-    SignupDto:
-      $ref: "./components/schemas.yaml#/SignupDto"
-
-    SignInDto:
-      $ref: "./components/schemas.yaml#/SignInDto"
-
-    CreateTeamRequest:
-      $ref: "./components/schemas.yaml#/CreateTeamRequest"
-
-    TeamDto:
-      $ref: "./components/schemas.yaml#/TeamDto"
-
-
-  parameters:
-    UserIdPath:
-      $ref: "./components/parameters.yaml#/UserIdPath"
-
-    UserIdHeader:
-      $ref: "./components/parameters.yaml#/UserIdHeader"
+  /team/{teamId}/member/{memberId}/role/{role}:
+    $ref: "./paths/team.yaml#/manageTeamMembersRole"
