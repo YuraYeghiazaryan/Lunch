@@ -8,7 +8,7 @@ servers:
   - url: /api/v1
 
 paths:
-  "/user/{id}":
+  /user/{id}:
     get:
       operationId: getUser
       description: Get user by id
@@ -26,7 +26,7 @@ paths:
       tags:
         - user
 
-  "/auth/signup":
+  /auth/signup:
     post:
       operationId: signup
       description: Register a new user
@@ -46,7 +46,7 @@ paths:
       tags:
         - auth
 
-  "/auth/signin":
+  /auth/signin:
     post:
       operationId: singIn
       description: sign in
@@ -65,6 +65,30 @@ paths:
                 $ref: "#/components/schemas/UserDto"
       tags:
         - auth
+
+  /teams:
+    post:
+      operationId: createTeam
+      description: Create a new Team
+      parameters:
+        - $ref: "#/components/parameters/UserIdHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTeamRequest"
+      responses:
+        '201':
+          description: Team successfully created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamDto"
+        '400':
+          description: Invalid input
+      tags:
+        - team
 
 components:
   securitySchemes:
@@ -85,11 +109,6 @@ components:
     UserDto:
       description: User object
       type: object
-      required:
-        - id
-        - firstName
-        - lastName
-        - email
       properties:
         id:
           type: integer
@@ -100,15 +119,15 @@ components:
           type: string
         email:
           type: string
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
 
     SignupDto:
       description: Data for user registration
       type: object
-      required:
-        - password
-        - firstName
-        - lastName
-        - email
       properties:
         password:
           type: string
@@ -118,18 +137,47 @@ components:
           type: string
         email:
           type: string
+      required:
+        - password
+        - firstName
+        - lastName
+        - email
 
     SignInDto:
       description: Data for user sign in
       type: object
-      required:
-        - email
-        - password
       properties:
         email:
           type: string
         password:
           type: string
+      required:
+        - email
+        - password
+
+    CreateTeamRequest:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+
+    TeamDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        createdByUserId:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+
 
   parameters:
     UserIdPath:
@@ -139,3 +187,12 @@ components:
       schema:
         type: integer
         format: int64
+
+    UserIdHeader:
+      name: X-User-Id
+      in: header
+      required: true
+      schema:
+        type: integer
+        format: int64
+      description: ID of the user creating the team
