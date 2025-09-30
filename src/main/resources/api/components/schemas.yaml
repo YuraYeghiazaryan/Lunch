@@ -77,3 +77,12 @@ UserRoleDto:
     - ADMIN
     - USER
     - GUEST
+
+UserIdsDto:
+  type: object
+  properties:
+    userIds:
+      type: array
+      items:
+        type: integer
+        format: int64

@@ -13,4 +13,12 @@ UserIdHeader:
   schema:
     type: integer
     format: int64
-  description: ID of the user creating the team
+  description: ID of an authenticated user
+
+TeamIdPath:
+  name: teamId
+  in: path
+  required: true
+  schema:
+    type: integer
+    format: int64

@@ -21,3 +21,43 @@ team:
         description: Invalid input
     tags:
       - team
+
+teamMembers:
+  post:
+    operationId: addTeamMembers
+    description: Add users to a team
+    parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
+      - $ref: "../components/parameters.yaml#/TeamIdPath"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas.yaml#/UserIdsDto"
+    responses:
+      '200':
+        description: Users successfully added to team
+      '400':
+        description: Invalid input
+    tags:
+      - team
+  delete:
+    operationId: removeTeamMembers
+    description: Remove users from a team
+    parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
+      - $ref: "../components/parameters.yaml#/TeamIdPath"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas.yaml#/UserIdsDto"
+    responses:
+      '200':
+        description: Users successfully removed from team
+      '400':
+        description: Invalid input
+    tags:
+      - team

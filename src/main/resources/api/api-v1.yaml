@@ -17,9 +17,11 @@ paths:
   /auth/signin:
     $ref: "./paths/auth.yaml#/signIn"
 
-  /teams:
+  /team:
     $ref: "./paths/team.yaml#/team"
 
+  /team/{teamId}/members:
+    $ref: "./paths/team.yaml#/teamMembers"
 
 components:
   schemas:
