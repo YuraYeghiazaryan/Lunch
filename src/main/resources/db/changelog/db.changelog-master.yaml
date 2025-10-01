@@ -1,8 +1,18 @@
 databaseChangeLog:
+
+  # Schemas
   - include:
       file: db/changelog/schema/create-schemas.yaml
+
+
+  # User Schema
   - include:
       file: db/changelog/schema/user/create-table-user.yaml
+  - include:
+      file: db/changelog/schema/user/create-table-user-information.yaml
+
+
+  # Team Schema
   - include:
       file: db/changelog/schema/team/create-table-team.yaml
   - include:
