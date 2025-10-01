@@ -1,27 +1,3 @@
-toOrder:
-  post:
-    operationId: toOrder
-    description: To order
-    parameters:
-      - $ref: "../components/parameters.yaml#/UserIdHeader"
-      - $ref: "../components/parameters.yaml#/OrderIdPath"
-      - name: status
-        in: path
-        required: true
-        schema:
-          $ref: "../components/schemas.yaml#/OrderStatusDto"
-    responses:
-      '201':
-        description: Order successfully done
-        content:
-          application/json:
-            schema:
-              $ref: "../components/schemas.yaml#/OrderDto"
-      '400':
-        description: Invalid input
-    tags:
-      - order
-
 order:
   post:
     operationId: createOrder
@@ -45,3 +21,27 @@ order:
         description: Team with provided id does not found
     tags:
       - oder
+
+setOrderStatus:
+  post:
+    operationId: serOrderStatus
+    description: Do or cansel order
+    parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
+      - $ref: "../components/parameters.yaml#/OrderIdPath"
+      - name: status
+        in: path
+        required: true
+        schema:
+          $ref: "../components/schemas.yaml#/OrderStatusDto"
+    responses:
+      '201':
+        description: Order successfully done
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas.yaml#/OrderDto"
+      '400':
+        description: Invalid input
+    tags:
+      - order

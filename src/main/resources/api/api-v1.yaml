@@ -33,4 +33,4 @@ paths:
     $ref: "./paths/order.yaml#/order"
 
   /order/{orderId}/status/{status}:
-    $ref: "./paths/order.yaml#/toOrder"
+    $ref: "./paths/order.yaml#/setOrderStatus"
