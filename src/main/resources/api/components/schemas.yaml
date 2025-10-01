@@ -69,6 +69,11 @@ TeamDto:
     createdAt:
       type: string
       format: date-time
+  required:
+    - id
+    - name
+    - createByUserId
+    - createdAt
 
 UserRoleDto:
   description: User role enum
@@ -86,12 +91,14 @@ UserIdsDto:
       items:
         type: integer
         format: int64
+  required:
+    - userIds
 
 CreateOrderDto:
   description: Needed data for order creation
   type: object
   properties:
-changes in order creation    contextUrl:
+    contextUrl:
       type: string
 
 OrderDto:
