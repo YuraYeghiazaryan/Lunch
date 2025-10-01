@@ -30,3 +30,11 @@ OrderIdPath:
   schema:
     type: integer
     format: int64
+
+ProductIdPath:
+  mame: productId
+  in: path
+  required: true
+  schema:
+    type: integer
+    format: int64
