@@ -25,7 +25,7 @@ order:
 setOrderStatus:
   post:
     operationId: serOrderStatus
-    description: Do or cansel order
+    description: Do or cancel order
     parameters:
       - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/OrderIdPath"
