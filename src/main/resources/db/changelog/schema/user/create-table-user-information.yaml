@@ -19,7 +19,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  type: varchar(255)
+                  type: date
                   name: birthDate
                   constraints:
                     nullable: false

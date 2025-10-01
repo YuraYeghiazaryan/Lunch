@@ -1,16 +1,5 @@
 databaseChangeLog:
   - changeSet:
-      id: add-role-type
-      author: Yura Yeghiazaryan
-      changes:
-        - sql:
-            dbms: '!h2,  oracle,  mysql, postgresql'
-            endDelimiter: \n
-            splitStatements: true
-            sql: CREATE TYPE role_type AS ENUM('ADMIN', 'USER', 'Guest');
-            stripComments: true
-
-  - changeSet:
       id: create-table-user
       author: Yura Yeghiazaryan
       changes:
