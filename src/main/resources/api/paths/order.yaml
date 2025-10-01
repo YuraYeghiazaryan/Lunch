@@ -86,3 +86,23 @@ manageOrderDetails:
         description: Order with provided id does not found or already deleted
     tags:
       - order
+
+addProduct:
+  post:
+    operationId: addProduct
+    description: Add product to order
+    parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
+      - $ref: "../components/parameters.yaml#/OrderIdPath"
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas.yaml#/ProductDetailsDto"
+    responses:
+      200:
+        description: Product successfully added
+      400:
+        description: Invalid input
+    tags:
+      - order
