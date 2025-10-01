@@ -5,7 +5,7 @@ toOrder:
     parameters:
       - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/OrderIdPath"
-      - name: role
+      - name: status
         in: path
         required: true
         schema:
