@@ -21,3 +21,27 @@ toOrder:
         description: Invalid input
     tags:
       - order
+
+order:
+  post:
+    operationId: createOrder
+    description: Create a new order
+    parameters:
+      $ref: "../components/parameters.yaml#/UserIdHeader"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+      $ref: "../components/schemas.yaml#/CreateOrderDto"
+    responses:
+      201:
+        description: Order successfully created
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas.yaml#/OrderDto"
+      400:
+        description: Team with provided id does not found
+    tags:
+      - oder

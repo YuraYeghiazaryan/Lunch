@@ -87,6 +87,16 @@ UserIdsDto:
         type: integer
         format: int64
 
+CreateOrderDto:
+  description: Needed data for order creation
+  type: object
+  properties:
+    teamId:
+      type: integer
+      format: int64
+    required:
+      - teamId
+
 OrderDto:
   type: object
   properties:
