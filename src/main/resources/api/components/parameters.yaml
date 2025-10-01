@@ -32,7 +32,7 @@ OrderIdPath:
     format: int64
 
 ProductIdPath:
-  mame: productId
+  name: productId
   in: path
   required: true
   schema:
