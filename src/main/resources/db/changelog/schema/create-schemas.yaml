@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-schemas
+      author: Yura Yeghiazaryan
+      changes:
+        - sql:
+            dbms: '!h2,  oracle,  mysql, postgresql'
+            endDelimiter: \n
+            splitStatements: true
+            sql: >
+              CREATE SCHEMA IF NOT EXISTS "user";
+              CREATE SCHEMA IF NOT EXISTS team;
+              CREATE SCHEMA IF NOT EXISTS "order";
+            stripComments: true

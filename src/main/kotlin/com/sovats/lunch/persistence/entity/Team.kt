@@ -15,7 +15,7 @@ import org.hibernate.annotations.CreationTimestamp
 import java.sql.Timestamp
 
 @Entity
-@Table(name = "team")
+@Table(schema = "team", name = "team")
 class Team(
 
     @Id
