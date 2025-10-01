@@ -34,3 +34,6 @@ paths:
 
   /order/{orderId}/status/{status}:
     $ref: "./paths/order.yaml#/setOrderStatus"
+
+  /order/{orderId}:
+    $ref: "./paths/order.yaml#/deleteOrder"

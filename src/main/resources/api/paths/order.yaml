@@ -45,3 +45,18 @@ setOrderStatus:
         description: Invalid input
     tags:
       - order
+
+deleteOrder:
+  delete:
+    operationId: deleteOrder
+    description: Delete order
+    parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
+      - $ref: "../components/parameters.yaml#/OrderIdPath"
+    responses:
+      200:
+        description: Order successfully deleted
+      400:
+        description: Order with provided id does not found or already deleted
+    tags:
+      - order
