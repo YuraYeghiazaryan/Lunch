@@ -10,7 +10,7 @@ order:
       content:
         application/json:
           schema:
-      $ref: "../components/schemas.yaml#/CreateOrderDto"
+            $ref: "../components/schemas.yaml#/CreateOrderDto"
     responses:
       201:
         description: Order successfully created
@@ -57,9 +57,11 @@ manageOrderDetails:
       - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/OrderIdPath"
     requestBody:
+      required: true
       content:
         application/json:
-          $ref: "../components/schemas.yaml#/OrderDetailsDto"
+          schema:
+            $ref: "../components/schemas.yaml#/OrderDetailsDto"
     responses:
       200:
         description: Order details successfully edited
@@ -95,6 +97,7 @@ addProduct:
       - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/OrderIdPath"
     requestBody:
+      required: true
       content:
         application/json:
           schema:
@@ -115,6 +118,7 @@ manageProductDetails:
       - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/ProductIdPath"
     requestBody:
+      required: true
       content:
         application/json:
           schema:
