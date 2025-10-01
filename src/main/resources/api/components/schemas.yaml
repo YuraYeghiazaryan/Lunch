@@ -127,3 +127,9 @@ OrderStatusDto:
   enum:
     - IN_PROGRESS
     - ORDERED
+
+OrderDetailsDto:
+  type: object
+  properties:
+    contextUrl:
+      type: string

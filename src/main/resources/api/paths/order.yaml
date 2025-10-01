@@ -47,7 +47,26 @@ setOrderStatus:
     tags:
       - order
 
-deleteOrder:
+manageOrderDetails:
+  put:
+    operationId: editOrderDetails
+    description: Edit order details
+    parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
+      - $ref: "../components/parameters.yaml#/OrderIdPath"
+    requestBody:
+      content:
+        application/json:
+          $ref: "../components/schemas.yaml#/OrderDetailsDto"
+    responses:
+      200:
+        description: Order details successfully edited
+      400:
+        description: Invalid input
+      404:
+        description: Order with provided id does not found
+    tags:
+      - order
   delete:
     operationId: deleteOrder
     description: Delete order
