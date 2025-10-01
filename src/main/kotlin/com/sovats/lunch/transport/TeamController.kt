@@ -1,7 +1,7 @@
 package com.sovats.lunch.transport
 
 import com.sovats.lunch.api.TeamApi
-import com.sovats.lunch.model.CreateTeamRequest
+import com.sovats.lunch.model.TeamDetailsDto
 import com.sovats.lunch.model.TeamDto
 import com.sovats.lunch.persistence.entity.Team
 import com.sovats.lunch.service.TeamService
@@ -15,9 +15,9 @@ class TeamController (
     private val conversionService: ConversionService
 ): TeamApi {
 
-    override fun createTeam(xUserId: Long, createTeamRequest: CreateTeamRequest): ResponseEntity<TeamDto> {
+    override fun createTeam(xUserId: Long, teamDetailsDto: TeamDetailsDto): ResponseEntity<TeamDto> {
         val team: Team = teamService.createTeam(
-            createTeamRequest.name,
+            teamDetailsDto.name,
             xUserId
         )
 
