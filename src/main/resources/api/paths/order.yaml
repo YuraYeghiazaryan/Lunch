@@ -18,7 +18,7 @@ order:
           application/json:
             schema:
               $ref: "../components/schemas.yaml#/OrderDto"
-      400:
+      404:
         description: Team with provided id does not found
     tags:
       - oder
@@ -36,14 +36,16 @@ setOrderStatus:
         schema:
           $ref: "../components/schemas.yaml#/OrderStatusDto"
     responses:
-      '201':
+      201:
         description: Order successfully done
         content:
           application/json:
             schema:
               $ref: "../components/schemas.yaml#/OrderDto"
-      '400':
+      400:
         description: Invalid input
+      404:
+        description: Order with provided id does not found
     tags:
       - order
 
@@ -80,7 +82,7 @@ manageOrderDetails:
           application/json:
             schema:
               $ref: "../components/schemas.yaml#/OrderDto"
-      400:
+      404:
         description: Order with provided id does not found or already deleted
     tags:
       - order

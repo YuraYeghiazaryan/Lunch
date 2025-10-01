@@ -11,13 +11,13 @@ createTeam:
           schema:
             $ref: "../components/schemas.yaml#/TeamDetailsDto"
     responses:
-      '201':
+      201:
         description: Team successfully created
         content:
           application/json:
             schema:
               $ref: "../components/schemas.yaml#/TeamDto"
-      '400':
+      400:
         description: Invalid input
     tags:
       - team
@@ -36,9 +36,9 @@ manageTeamMembers:
           schema:
             $ref: "../components/schemas.yaml#/UserIdsDto"
     responses:
-      '200':
+      200:
         description: Users successfully added to team
-      '400':
+      400:
         description: Invalid input
     tags:
       - team
@@ -55,9 +55,9 @@ manageTeamMembers:
           schema:
             $ref: "../components/schemas.yaml#/UserIdsDto"
     responses:
-      '200':
+      200:
         description: Users successfully removed from team
-      '400':
+      400:
         description: Invalid input
     tags:
       - team
@@ -77,7 +77,7 @@ manageTeamMembersRole:
     response:
       200:
         description: Team member role successfully edited
-      400:
+      404:
         description: Team member with provided id does not found in provided team
     tags:
       - team
@@ -98,7 +98,7 @@ manageTeamDetails:
     responses:
       200:
         description: Team details successfully edited
-      400:
+      404:
         description: Team with provided id does not found
   delete:
     operationId: deleteTeam
@@ -109,7 +109,7 @@ manageTeamDetails:
     responses:
       200:
         description: Team successfully deleted
-      400:
+      404:
         description: Team with provided id does not found or already deleted
     tags:
       - team
