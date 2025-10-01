@@ -3,7 +3,8 @@ order:
     operationId: createOrder
     description: Create a new order
     parameters:
-      $ref: "../components/parameters.yaml#/UserIdHeader"
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
+      - $ref: "../components/parameters.yaml#/TeamIdPath"
     requestBody:
       required: true
       content:
@@ -56,6 +57,10 @@ deleteOrder:
     responses:
       200:
         description: Order successfully deleted
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas.yaml#/OrderDto"
       400:
         description: Order with provided id does not found or already deleted
     tags:

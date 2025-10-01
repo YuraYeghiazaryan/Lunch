@@ -91,11 +91,8 @@ CreateOrderDto:
   description: Needed data for order creation
   type: object
   properties:
-    teamId:
-      type: integer
-      format: int64
-    required:
-      - teamId
+changes in order creation    contextUrl:
+      type: string
 
 OrderDto:
   type: object

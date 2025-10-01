@@ -29,7 +29,7 @@ paths:
   /team/{teamId}/member/{memberId}/role/{role}:
     $ref: "./paths/team.yaml#/manageTeamMembersRole"
 
-  /order:
+  /team/{teamId}/order:
     $ref: "./paths/order.yaml#/order"
 
   /order/{orderId}/status/{status}:
