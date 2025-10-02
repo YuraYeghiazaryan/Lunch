@@ -1,0 +1,70 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-product
+      author: Yura Yeghiazaryan
+      changes:
+      - createSequence:
+          schemaName: order
+          sequenceName: product_seq
+          startValue: 1
+          incrementBy: 1
+      - createTable:
+          schemaName: order
+          tableName: product
+          columns:
+            - column:
+                name: id
+                type: bigint
+                defaultValueComputed: "nextval('order.product_seq')"
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: name
+                type: varchar(255)
+                constraints:
+                  nullable: false
+            - column:
+                name: url
+                type: varchar(255)
+            - column:
+                name: description
+                type: varchar(255)
+            - column:
+                name: quantity
+                type: int
+                constraints:
+                  nullable: false
+            - column:
+                name: price
+                type: bigint
+                constraints:
+                  nullable: false
+            - column:
+                name: orderId
+                type: bigint
+                constraints:
+                  nullable: false
+            - column:
+                name: createdByUserId
+                type: bigint
+                constraints:
+                  nullable: false
+      - addForeignKeyConstraint:
+          baseTableSchemaName: order
+          baseTableName: product
+          baseColumnNames: orderId
+          referencedTableSchemaName: order
+          referencedTableName: order
+          referencedColumnNames: id
+          constraintName: fk_order_id
+
+      - addForeignKeyConstraint:
+          baseTableSchemaName: order
+          baseTableName: product
+          baseColumnNames: createdByUserId
+          referencedTableSchemaName: user
+          referencedTableName: user
+          referencedColumnNames: id
+          constraintName: fk_user_id
+

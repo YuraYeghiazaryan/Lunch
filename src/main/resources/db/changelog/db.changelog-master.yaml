@@ -22,3 +22,5 @@ databaseChangeLog:
   # order Schema
   - include:
       file: db/changelog/schema/order/create-table-order.yaml
+  - include:
+      file: db/changelog/schema/order/create-table-product.yaml
