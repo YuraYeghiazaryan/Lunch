@@ -38,3 +38,11 @@ ProductIdPath:
   schema:
     type: integer
     format: int64
+
+MemberIdPath:
+  name: memberId
+  in: path
+  required: true
+  schema:
+    type: integer
+    format: int64

@@ -23,7 +23,7 @@ class Team(
     val id: Long? = null,
 
     @Column(name = "name")
-    val name: String,
+    var name: String,
 
     @JoinColumn(name = "created_by_user_id")
     @ManyToOne(fetch = FetchType.LAZY)

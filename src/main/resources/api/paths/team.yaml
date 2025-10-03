@@ -69,11 +69,12 @@ manageTeamMembersRole:
     parameters:
       - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/TeamIdPath"
-      - name: role
+      - $ref: "../components/parameters.yaml#/MemberIdPath"
+      - name: role # should be roleDto, to correspond method parameter
         in: path
         required: true
         schema:
-          $ref: "../components/schemas.yaml#/UserRoleDto"
+          $ref: "../components/schemas.yaml#/UserRoleDto" # but this is path variable, so it should be something like UserRolePath
     response:
       200:
         description: Team member role successfully edited
@@ -100,6 +101,8 @@ manageTeamDetails:
         description: Team details successfully edited
       404:
         description: Team with provided id does not found
+    tags:
+      - team
   delete:
     operationId: deleteTeam
     description: Delete team

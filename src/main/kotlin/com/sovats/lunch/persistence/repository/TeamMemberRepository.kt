@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface TeamMemberRepository: JpaRepository<TeamMember, TeamMemberId> {
     fun findByTeamIdAndUserId(teamId: Long, userId: Long): TeamMember?
+    fun findByTeamId(teamId: Long): List<TeamMember>
     fun deleteByTeamIdAndUserId(teamId: Long, userId: Long)
 }
