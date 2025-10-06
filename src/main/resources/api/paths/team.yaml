@@ -27,14 +27,13 @@ manageTeamMembers:
     operationId: addTeamMembers
     description: Add users to a team
     parameters:
-      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/TeamIdPath"
     requestBody:
       required: true
       content:
         application/json:
           schema:
-            $ref: "../components/schemas.yaml#/UserIdsDto"
+            $ref: "../components/schemas.yaml#/AddTeamMemberListDto"
     responses:
       200:
         description: Users successfully added to team
@@ -46,7 +45,6 @@ manageTeamMembers:
     operationId: removeTeamMembers
     description: Remove users from a team
     parameters:
-      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/TeamIdPath"
     requestBody:
       required: true
@@ -67,14 +65,9 @@ manageTeamMembersRole:
     operationId: setTeamMemberRole
     description: Set team member role
     parameters:
-      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/TeamIdPath"
       - $ref: "../components/parameters.yaml#/MemberIdPath"
-      - name: role # should be roleDto, to correspond method parameter
-        in: path
-        required: true
-        schema:
-          $ref: "../components/schemas.yaml#/UserRoleDto" # but this is path variable, so it should be something like UserRolePath
+      - $ref: "../components/parameters.yaml#/UserRolePath"
     response:
       200:
         description: Team member role successfully edited
@@ -88,7 +81,6 @@ manageTeamDetails:
     operationId: editTeamDetails
     description: Edit team details
     parameters:
-      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/TeamIdPath"
     requestBody:
       required: true
@@ -107,7 +99,6 @@ manageTeamDetails:
     operationId: deleteTeam
     description: Delete team
     parameters:
-      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/TeamIdPath"
     responses:
       200:

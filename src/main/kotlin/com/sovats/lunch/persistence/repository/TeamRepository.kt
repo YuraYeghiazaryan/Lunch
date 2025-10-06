@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface TeamRepository : JpaRepository<Team, Long> {
+    // TODO add insert method
     fun findTeamById(id: Long): Team?
 }

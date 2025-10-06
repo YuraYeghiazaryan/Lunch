@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface UserRepository: JpaRepository<User, Long> {
+    // TODO add insert method
     fun findUserById(id: Long): User?
     fun findByEmail(email: String): User?
 }

@@ -15,7 +15,7 @@ class User (
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val id: Long? = null, // TODO why id should be null?
 
     @Column(name = "email")
     val email: String,

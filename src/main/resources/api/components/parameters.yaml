@@ -46,3 +46,10 @@ MemberIdPath:
   schema:
     type: integer
     format: int64
+
+UserRolePath:
+  name: roleDto
+  in: path
+  required: true
+  schema:
+    $ref: "../components/schemas.yaml#/UserRoleDto"

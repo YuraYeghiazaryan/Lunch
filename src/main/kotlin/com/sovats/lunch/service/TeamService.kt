@@ -9,6 +9,7 @@ import com.sovats.lunch.persistence.repository.TeamRepository
 import com.sovats.lunch.persistence.repository.UserRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.sql.SQLException
 
 @Service
 class TeamService(
@@ -33,24 +34,16 @@ class TeamService(
         return team
     }
 
-    @Transactional
-    fun addTeamMembers(userIds: List<Long>, teamId: Long) {
-        // TODO userIds or memberIds
-        val team: Team = teamRepository.findTeamById(teamId)
-            ?: throw IllegalStateException("Can't add users to team by id $teamId. Team doesn't exist")
-
-        userIds.forEach { userId ->
-            val user = userRepository.findUserById(userId)
-                ?: throw IllegalStateException("User $userId not found")
-
-            // by default, newly added user role is USER // TODO GUEST role
-            addUserToTeam(user, team, UserRole.USER)
+    fun addTeamMembers(teamId: Long, userId: Long, role: UserRole) {
+        try {
+            teamMemberRepository.insert(teamId, userId, role.name)
+        } catch (exception: SQLException) {
+            println(exception.message)
         }
     }
 
     @Transactional
     fun removeTeamMembers(userIds: List<Long>, teamId: Long) {
-        // TODO userIds or memberIds
         if (!teamRepository.existsById(teamId)) {
             throw IllegalStateException("Can't remove users from team by id $teamId. Team doesn't exist")
         }
@@ -62,7 +55,6 @@ class TeamService(
     }
 
     fun setTeamMemberRole(userId: Long, teamId: Long, role: UserRole): TeamMember  {
-        // TODO userId or memberId
         val teamMember: TeamMember = teamMemberRepository.findByTeamIdAndUserId(teamId, userId)
             ?: throw IllegalStateException("User $userId is not a member of team $teamId.")
 
@@ -78,17 +70,8 @@ class TeamService(
         teamRepository.save(team)
     }
 
-    @Transactional
     fun deleteTeam(teamId: Long) {
-        // TODO verify
-        val teamMembers: List<TeamMember> = teamMemberRepository.findByTeamId(teamId)
-        val userIds: List<Long> = teamMembers.map { it.user.id!! };
-        removeTeamMembers(userIds, teamId)
-
-        val team: Team = teamRepository.findTeamById(teamId)
-        ?: throw IllegalStateException("Can't delete team by id $teamId. Team doesn't exist or already deleted")
-
-        teamRepository.delete(team)
+        teamRepository.deleteById(teamId)
     }
 
     fun addUserToTeam(user: User, team: Team, role: UserRole): TeamMember {

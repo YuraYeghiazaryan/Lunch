@@ -1,6 +1,7 @@
 package com.sovats.lunch.transport
 
 import com.sovats.lunch.api.TeamApi
+import com.sovats.lunch.model.AddTeamMemberDto
 import com.sovats.lunch.model.TeamDetailsDto
 import com.sovats.lunch.model.TeamDto
 import com.sovats.lunch.model.UserIdsDto
@@ -30,24 +31,24 @@ class TeamController (
         return ResponseEntity.status(201).body(teamDto)
     }
 
-    override fun addTeamMembers(xUserId: Long, teamId: Long, userIdsDto: UserIdsDto): ResponseEntity<Unit> {
-        // TODO xUserId
-        // TODO userIds or memberIds
-        teamService.addTeamMembers(userIdsDto.userIds, teamId)
+    override fun addTeamMembers(teamId: Long, addTeamMemberDto: List<AddTeamMemberDto>): ResponseEntity<Unit> {
+        addTeamMemberDto.forEach { member ->
+            teamService.addTeamMembers(
+                teamId = teamId,
+                userId = member.userId,
+                role = member.role?.let { conversionService.convert(member, UserRole::class.java) } ?: UserRole.USER
+            )
+        }
+
         return ResponseEntity.ok().build()
     }
 
-    override fun removeTeamMembers(xUserId: Long, teamId: Long, userIdsDto: UserIdsDto): ResponseEntity<Unit> {
-        // TODO xUserId
-        // TODO userIds or memberIds
+    override fun removeTeamMembers(teamId: Long, userIdsDto: UserIdsDto): ResponseEntity<Unit> {
         teamService.removeTeamMembers(userIdsDto.userIds, teamId)
         return ResponseEntity.ok().build()
     }
 
-    override fun setTeamMemberRole(xUserId: Long, teamId: Long, memberId: Long, roleDto: UserRoleDto): ResponseEntity<Unit> {
-        //TODO xUserId
-        // TODO userId or memberId
-        // TODO roleDto
+    override fun setTeamMemberRole(teamId: Long, memberId: Long, roleDto: UserRoleDto): ResponseEntity<Unit> {
         val role: UserRole = conversionService.convert(roleDto, UserRole::class.java)
             ?: throw IllegalArgumentException("Invalid role: $roleDto")
 
@@ -55,14 +56,12 @@ class TeamController (
         return ResponseEntity.ok().build()
     }
 
-    override fun editTeamDetails(xUserId: Long, teamId: Long, teamDetailsDto: TeamDetailsDto): ResponseEntity<Unit> {
-        //TODO xUserId
+    override fun editTeamDetails(teamId: Long, teamDetailsDto: TeamDetailsDto): ResponseEntity<Unit> {
         teamService.editTeamDetails(teamId, teamDetailsDto.name)
         return ResponseEntity.ok().build()
     }
 
-    override fun deleteTeam(xUserId: Long, teamId: Long): ResponseEntity<Unit> {
-        //TODO xUserId
+    override fun deleteTeam(teamId: Long): ResponseEntity<Unit> {
         teamService.deleteTeam(teamId)
         return ResponseEntity.ok().build()
     }

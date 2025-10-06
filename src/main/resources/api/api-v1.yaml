@@ -26,7 +26,7 @@ paths:
   /team/{teamId}:
     $ref: "./paths/team.yaml#/manageTeamDetails"
 
-  /team/{teamId}/member/{memberId}/role/{role}:
+  /team/{teamId}/member/{memberId}/role/{roleDto}:
     $ref: "./paths/team.yaml#/manageTeamMembersRole"
 
   /team/{teamId}/order:

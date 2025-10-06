@@ -37,6 +37,7 @@ databaseChangeLog:
             referencedTableName: team
             referencedColumnNames: id
             constraintName: fk_team_members_team
+            onDelete: CASCADE
 
         - addForeignKeyConstraint:
             baseTableSchemaName: team
@@ -46,3 +47,4 @@ databaseChangeLog:
             referencedTableName: user
             referencedColumnNames: id
             constraintName: fk_team_members_user
+            onDelete: CASCADE

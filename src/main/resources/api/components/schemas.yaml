@@ -83,6 +83,20 @@ UserRoleDto:
     - USER
     - GUEST
 
+AddTeamMemberListDto:
+  type: array
+  items:
+    title: AddTeamMemberDto
+    type: object
+    properties:
+      userId:
+        type: integer
+        format: int64
+      role:
+        $ref: "#/UserRoleDto"
+    required:
+      - userId
+
 UserIdsDto:
   type: object
   properties:
