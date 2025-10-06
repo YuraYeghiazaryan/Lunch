@@ -10,17 +10,22 @@ import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.OneToMany
+import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
-import org.hibernate.annotations.CreationTimestamp
 import java.sql.Timestamp
 
 @Entity
 @Table(schema = "team", name = "team")
 class Team(
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "team_seq_gen")
+    @SequenceGenerator(
+        name = "team_seq_gen",
+        sequenceName = "team.team_seq",
+        allocationSize = 1
+    )
+    val id: Long,
 
     @Column(name = "name")
     var name: String,
@@ -30,8 +35,7 @@ class Team(
     val createdByUser: User,
 
     @Column(name = "created_at")
-    @CreationTimestamp
-    val createdAt: Timestamp? = null,
+    val createdAt: Timestamp,
 
     @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
     val teamMembers: MutableSet<TeamMember>,

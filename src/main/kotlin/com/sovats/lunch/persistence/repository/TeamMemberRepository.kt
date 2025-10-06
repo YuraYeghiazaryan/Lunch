@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 interface TeamMemberRepository: JpaRepository<TeamMember, TeamMemberId> {
     @Query(
         """
-            INSERT INTO team.team_members (team_id, user_id, role)
+            INSERT INTO team.team_members (team_id, user_id, role) 
             VALUES (:teamId, :userId, :role)
             RETURNING *
         """,
@@ -20,7 +20,18 @@ interface TeamMemberRepository: JpaRepository<TeamMember, TeamMemberId> {
     )
     fun insert(teamId: Long, userId: Long, role: String): TeamMember
 
+    @Query(
+        """
+            UPDATE team.team_members 
+            SET role = :role 
+            WHERE team_id = :teamId AND user_id = :userId
+            RETURNING *
+        """,
+        nativeQuery = true
+    )
+    fun updateRole(teamId: Long, userId: Long, role: String): TeamMember
+
     fun findByTeamIdAndUserId(teamId: Long, userId: Long): TeamMember?
     fun findByTeamId(teamId: Long): List<TeamMember>
-    fun deleteByTeamIdAndUserId(teamId: Long, userId: Long)
+    fun deleteByTeamIdAndUserIdIn(teamId: Long, userIds: List<Long>)
 }

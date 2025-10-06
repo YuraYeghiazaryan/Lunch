@@ -4,6 +4,7 @@ databaseChangeLog:
       author: Yura Yeghiazaryan
       changes:
         - createSequence:
+            schemaName: team
             sequenceName: team_seq
             startValue: 1
             incrementBy: 1
@@ -14,7 +15,7 @@ databaseChangeLog:
               - column:
                   name: id
                   type: bigint
-                  defaultValueComputed: "nextval('team_seq')"
+                  defaultValueComputed: "nextval('team.team_seq')"
                   constraints:
                     primaryKey: true
                     nullable: false

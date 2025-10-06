@@ -33,7 +33,7 @@ class TeamController (
 
     override fun addTeamMembers(teamId: Long, addTeamMemberDto: List<AddTeamMemberDto>): ResponseEntity<Unit> {
         addTeamMemberDto.forEach { member ->
-            teamService.addTeamMembers(
+            teamService.addTeamMember(
                 teamId = teamId,
                 userId = member.userId,
                 role = member.role?.let { conversionService.convert(member, UserRole::class.java) } ?: UserRole.USER
@@ -44,7 +44,7 @@ class TeamController (
     }
 
     override fun removeTeamMembers(teamId: Long, userIdsDto: UserIdsDto): ResponseEntity<Unit> {
-        teamService.removeTeamMembers(userIdsDto.userIds, teamId)
+        teamService.removeTeamMembers(teamId, userIdsDto.userIds)
         return ResponseEntity.ok().build()
     }
 

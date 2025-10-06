@@ -23,18 +23,13 @@ class TeamService(
             this.userRepository.findUserById(createdByUserId)
                 ?: throw IllegalStateException("Can't create team for user by id ${createdByUserId}. User doesn't exists");
 
-        val team: Team = teamRepository.save(Team(
-            name = name,
-            createdByUser = user,
-            teamMembers = mutableSetOf(),
-        ))
-
-        addUserToTeam(user, team, UserRole.ADMIN) // Team creator become ADMIN by default
+        val team: Team = teamRepository.insert(name, createdByUserId)
+        this.addTeamMember(team.id, user.id, UserRole.ADMIN) // Team creator become ADMIN by default
 
         return team
     }
 
-    fun addTeamMembers(teamId: Long, userId: Long, role: UserRole) {
+    fun addTeamMember(teamId: Long, userId: Long, role: UserRole) {
         try {
             teamMemberRepository.insert(teamId, userId, role.name)
         } catch (exception: SQLException) {
@@ -43,52 +38,22 @@ class TeamService(
     }
 
     @Transactional
-    fun removeTeamMembers(userIds: List<Long>, teamId: Long) {
+    fun removeTeamMembers(teamId: Long, userIds: List<Long>) {
         if (!teamRepository.existsById(teamId)) {
             throw IllegalStateException("Can't remove users from team by id $teamId. Team doesn't exist")
         }
-
-        userIds.forEach { userId ->
-            // Try to delete — if user is not in the team, this will just do nothing (no error)
-            teamMemberRepository.deleteByTeamIdAndUserId(teamId, userId)
-        }
+        teamMemberRepository.deleteByTeamIdAndUserIdIn(teamId, userIds)
     }
 
-    fun setTeamMemberRole(userId: Long, teamId: Long, role: UserRole): TeamMember  {
-        val teamMember: TeamMember = teamMemberRepository.findByTeamIdAndUserId(teamId, userId)
-            ?: throw IllegalStateException("User $userId is not a member of team $teamId.")
-
-        teamMember.role = role
-        return teamMemberRepository.save(teamMember)
+    fun setTeamMemberRole(teamId: Long, userId: Long, role: UserRole): TeamMember  {
+        return teamMemberRepository.updateRole(teamId, userId, role.name)
     }
 
     fun editTeamDetails(teamId: Long, newName: String) {
-        val team: Team = teamRepository.findTeamById(teamId)
-            ?: throw IllegalStateException("Can't edit team details by id $teamId. Team doesn't exist")
-
-        team.name = newName
-        teamRepository.save(team)
+        teamRepository.updateNameTeamDetails(teamId, newName)
     }
 
     fun deleteTeam(teamId: Long) {
         teamRepository.deleteById(teamId)
-    }
-
-    fun addUserToTeam(user: User, team: Team, role: UserRole): TeamMember {
-        val teamMember: TeamMember = TeamMember(
-            team,
-            user,
-            role
-        )
-        return teamMemberRepository.save(teamMember)
-    }
-
-    fun addUserToTeam(userId: Long, teamId: Long, role: UserRole): TeamMember {
-        val user: User = userRepository.findUserById(userId)
-            ?: throw IllegalStateException("Can't add user by id $userId to the team by id $teamId. User doesn't exists")
-
-        val team: Team = teamRepository.findTeamById(teamId)
-            ?: throw IllegalStateException("Can't add user by id $userId to the team by id $teamId. Team doesn't exists")
-        return addUserToTeam(user, team, role)
     }
 }
