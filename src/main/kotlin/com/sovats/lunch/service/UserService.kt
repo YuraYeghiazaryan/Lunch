@@ -9,16 +9,8 @@ class UserService(
     private val userRepository: UserRepository,
 ) {
 
-    fun createUser(password: String, firstName: String, lastName: String, email: String): User {
-        val user = User(
-            password = password,
-            firstName = firstName,
-            lastName = lastName,
-            email = email,
-            teamMemberships = mutableSetOf()
-        )
-
-        return this.userRepository.save(user)
+    fun createUser(email: String, password: String, firstName: String, lastName: String): User {
+        return userRepository.insert(email, password, firstName, lastName)
     }
 
     fun getUserById(id: Long): User {

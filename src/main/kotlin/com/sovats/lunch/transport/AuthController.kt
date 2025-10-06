@@ -18,10 +18,10 @@ class AuthController(
 
     override fun signup(signupDto: SignupDto): ResponseEntity<UserDto> {
         val savedUser: User = this.userService.createUser(
+            signupDto.email,
             signupDto.password,
             signupDto.firstName,
             signupDto.lastName,
-            signupDto.email,
         )
 
         // Map User Entity -> UserDto

@@ -21,19 +21,19 @@ SignupDto:
   description: Data for user registration
   type: object
   properties:
+    email:
+      type: string
     password:
       type: string
     firstName:
       type: string
     lastName:
       type: string
-    email:
-      type: string
   required:
+    - email
     - password
     - firstName
     - lastName
-    - email
 
 SignInDto:
   description: Data for user sign in
