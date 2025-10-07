@@ -41,19 +41,19 @@ databaseChangeLog:
                 constraints:
                   nullable: false
             - column:
-                name: orderId
+                name: order_id
                 type: bigint
                 constraints:
                   nullable: false
             - column:
-                name: createdByUserId
+                name: created_by_user_id
                 type: bigint
                 constraints:
                   nullable: false
       - addForeignKeyConstraint:
           baseTableSchemaName: product
           baseTableName: product
-          baseColumnNames: orderId
+          baseColumnNames: order_id
           referencedTableSchemaName: order
           referencedTableName: order
           referencedColumnNames: id
@@ -62,7 +62,7 @@ databaseChangeLog:
       - addForeignKeyConstraint:
           baseTableSchemaName: product
           baseTableName: product
-          baseColumnNames: createdByUserId
+          baseColumnNames: created_by_user_id
           referencedTableSchemaName: user
           referencedTableName: user
           referencedColumnNames: id
