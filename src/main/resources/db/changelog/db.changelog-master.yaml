@@ -23,4 +23,4 @@ databaseChangeLog:
   - include:
       file: db/changelog/schema/order/create-table-order.yaml
   - include:
-      file: db/changelog/schema/order/create-table-product.yaml
+      file: db/changelog/schema/product/create-table-product.yaml
