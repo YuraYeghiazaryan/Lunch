@@ -77,7 +77,7 @@ manageTeamMembersRole:
       - team
 
 manageTeamDetails:
-  patch:
+  put:
     operationId: editTeamDetails
     description: Edit team details
     parameters:

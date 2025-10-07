@@ -28,7 +28,7 @@ interface TeamRepository : JpaRepository<Team, Long> {
         """,
         nativeQuery = true
     )
-    fun updateNameTeamDetails(id: Long, name: String): Team
+    fun updateTeamDetails(id: Long, name: String): Team
 
     fun findTeamById(id: Long): Team?
 }

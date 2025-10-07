@@ -49,7 +49,7 @@ class TeamService(
     }
 
     fun editTeamDetails(teamId: Long, newName: String) {
-        teamRepository.updateNameTeamDetails(teamId, newName)
+        teamRepository.updateTeamDetails(teamId, newName)
     }
 
     fun deleteTeam(teamId: Long) {
