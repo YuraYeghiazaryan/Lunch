@@ -15,4 +15,8 @@ class OrderService(
     fun setOrderStatus(orderId: Long, orderStatus: OrderStatus) {
         orderRepository.updateStatus(orderId, orderStatus.name)
     }
+
+    fun deleteOrder(orderId: Long) {
+        this.orderRepository.deleteOrderById(orderId)
+    }
 }

@@ -29,4 +29,14 @@ interface OrderRepository : JpaRepository<Order, Long> {
         nativeQuery = true
     )
     fun updateStatus(orderId: Long, status: String): Order
+
+    @Query(
+        """
+        DELETE FROM "order"."order"
+        WHERE id = :orderId
+        RETURNING *
+        """,
+        nativeQuery = true
+    )
+    fun deleteOrderById(orderId: Long): Order
 }

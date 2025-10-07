@@ -74,7 +74,6 @@ manageOrderDetails:
     operationId: deleteOrder
     description: Delete order
     parameters:
-      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/OrderIdPath"
     responses:
       200:

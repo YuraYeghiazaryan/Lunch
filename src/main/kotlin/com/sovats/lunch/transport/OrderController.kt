@@ -27,4 +27,9 @@ class OrderController (
         this.orderService.setOrderStatus(orderId, orderStatus)
         return ResponseEntity.ok().build()
     }
+
+    override fun deleteOrder(orderId: Long): ResponseEntity<OrderDto> {
+        this.orderService.deleteOrder(orderId)
+        return ResponseEntity.ok().build()
+    }
 }
