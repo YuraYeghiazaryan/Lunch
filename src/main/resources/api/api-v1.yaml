@@ -32,7 +32,7 @@ paths:
   /team/{teamId}/order:
     $ref: "./paths/order.yaml#/order"
 
-  /order/{orderId}/status/{status}:
+  /order/{orderId}/status/{orderStatusDto}:
     $ref: "./paths/order.yaml#/setOrderStatus"
 
   /order/{orderId}:

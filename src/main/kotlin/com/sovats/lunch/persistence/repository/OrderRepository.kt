@@ -18,4 +18,15 @@ interface OrderRepository : JpaRepository<Order, Long> {
         nativeQuery = true
     )
     fun insert(teamId: Long, createdByUserId: Long, contextUrl: String?): Order
+
+    @Query(
+        """
+            UPDATE "order"."order" 
+            SET status = :status
+            WHERE id = :orderId
+            RETURNING *
+        """,
+        nativeQuery = true
+    )
+    fun updateStatus(orderId: Long, status: String): Order
 }

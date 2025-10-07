@@ -28,9 +28,8 @@ setOrderStatus:
     operationId: setOrderStatus
     description: Do or cancel order
     parameters:
-      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/OrderIdPath"
-      - name: status
+      - name: orderStatusDto
         in: path
         required: true
         schema:
