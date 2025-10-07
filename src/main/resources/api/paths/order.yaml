@@ -21,11 +21,11 @@ order:
       404:
         description: Team with provided id does not found
     tags:
-      - oder
+      - order
 
 setOrderStatus:
   post:
-    operationId: serOrderStatus
+    operationId: setOrderStatus
     description: Do or cancel order
     parameters:
       - $ref: "../components/parameters.yaml#/UserIdHeader"

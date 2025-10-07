@@ -20,36 +20,35 @@ databaseChangeLog:
                   primaryKey: true
                   nullable: false
             - column:
-                name: teamId
+                name: team_id
                 type: bigint
                 constraints:
                   nullable: false
             - column:
-                name: createdByUserId
+                name: created_by_user_id
                 type: bigint
                 constraints:
                   nullable: false
             - column:
                 name: status
                 type: varchar(50)
+                defaultValue: IN_PROGRESS
                 constraints:
                   nullable: false
             - column:
-                name: createdAt
+                name: created_at
                 type: timestamp
                 defaultValueComputed: CURRENT_TIMESTAMP
                 constraints:
                   nullable: false
             - column:
-                name: contextUrl
+                name: context_url
                 type: varchar(255)
-                constraints:
-                  nullable: false
 
       - addForeignKeyConstraint:
           baseTableSchemaName: order
           baseTableName: order
-          baseColumnNames: teamId
+          baseColumnNames: team_id
           referencedTableSchemaName: team
           referencedTableName: team
           referencedColumnNames: id
@@ -58,7 +57,7 @@ databaseChangeLog:
       - addForeignKeyConstraint:
           baseTableSchemaName: order
           baseTableName: order
-          baseColumnNames: createdByUserId
+          baseColumnNames: created_by_user_id
           referencedTableSchemaName: user
           referencedTableName: user
           referencedColumnNames: id

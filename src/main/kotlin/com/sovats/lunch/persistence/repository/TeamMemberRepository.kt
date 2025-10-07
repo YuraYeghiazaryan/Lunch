@@ -18,7 +18,7 @@ interface TeamMemberRepository: JpaRepository<TeamMember, TeamMemberId> {
         """,
         nativeQuery = true
     )
-    fun insert(teamId: Long, userId: Long, role: String): TeamMember
+    fun insert(teamId: Long, userId: Long, role: String?): TeamMember
 
     @Query(
         """
