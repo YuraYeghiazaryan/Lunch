@@ -12,13 +12,23 @@ import org.springframework.transaction.annotation.Transactional
 interface TeamMemberRepository: JpaRepository<TeamMember, TeamMemberId> {
     @Query(
         """
+            INSERT INTO team.team_members (team_id, user_id) 
+            VALUES (:teamId, :userId)
+            RETURNING *
+        """,
+        nativeQuery = true
+    )
+    fun insert(teamId: Long, userId: Long): TeamMember
+
+    @Query(
+        """
             INSERT INTO team.team_members (team_id, user_id, role) 
             VALUES (:teamId, :userId, :role)
             RETURNING *
         """,
         nativeQuery = true
     )
-    fun insert(teamId: Long, userId: Long, role: String?): TeamMember
+    fun insert(teamId: Long, userId: Long, role: String): TeamMember
 
     @Query(
         """

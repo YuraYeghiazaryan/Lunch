@@ -36,7 +36,7 @@ class TeamController (
             teamService.addTeamMember(
                 teamId = teamId,
                 userId = member.userId,
-                role = conversionService.convert(member, UserRole::class.java)
+                role = conversionService.convert(member.role, UserRole::class.java)
             )
         }
 

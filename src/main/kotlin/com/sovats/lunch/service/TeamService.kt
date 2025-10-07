@@ -25,7 +25,12 @@ class TeamService(
 
     fun addTeamMember(teamId: Long, userId: Long, role: UserRole?) {
         try {
-            teamMemberRepository.insert(teamId, userId, role?.name)
+            /* fixme: add default value generation support by providing null value */
+            if (role == null) {
+                teamMemberRepository.insert(teamId, userId)
+            } else {
+                teamMemberRepository.insert(teamId, userId, role.name)
+            }
         } catch (exception: SQLException) {
             println(exception.message)
         }
