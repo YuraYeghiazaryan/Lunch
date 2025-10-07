@@ -22,6 +22,17 @@ interface OrderRepository : JpaRepository<Order, Long> {
     @Query(
         """
             UPDATE "order"."order" 
+            SET context_url = :contextUrl
+            WHERE id = :orderId
+            RETURNING *
+        """,
+        nativeQuery = true
+    )
+    fun updateOrderDetails(orderId: Long, contextUrl: String?): Order
+
+    @Query(
+        """
+            UPDATE "order"."order" 
             SET status = :status
             WHERE id = :orderId
             RETURNING *

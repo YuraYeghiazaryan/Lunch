@@ -19,4 +19,8 @@ class OrderService(
     fun deleteOrder(orderId: Long) {
         this.orderRepository.deleteOrderById(orderId)
     }
+
+    fun editOrderDetails(orderId: Long, contextUrl: String?) {
+        this.orderRepository.updateOrderDetails(orderId, contextUrl)
+    }
 }
