@@ -56,7 +56,6 @@ manageProductDetails:
     operationId: deleteProduct
     description: Delete product
     parameters:
-      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/ProductIdPath"
     responses:
       200:

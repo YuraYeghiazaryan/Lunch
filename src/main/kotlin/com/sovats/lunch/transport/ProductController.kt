@@ -42,4 +42,9 @@ class ProductController (
 
         return ResponseEntity.ok().build()
     }
+
+    override fun deleteProduct(productId: Long): ResponseEntity<Unit> {
+        this.productService.deleteProduct(productId)
+        return ResponseEntity.ok().build()
+    }
 }
