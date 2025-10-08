@@ -20,6 +20,20 @@ class ProductController (
             productDetailsDto.quantity,
             productDetailsDto.itemPrice
         )
+
+        return ResponseEntity.ok().build()
+    }
+
+    override fun editProductDetails(productId: Long, productDetailsDto: ProductDetailsDto): ResponseEntity<Unit> {
+        this.productService.editProductDetails(
+            productId,
+            productDetailsDto.name,
+            productDetailsDto.url,
+            productDetailsDto.description,
+            productDetailsDto.quantity,
+            productDetailsDto.itemPrice
+        )
+
         return ResponseEntity.ok().build()
     }
 }

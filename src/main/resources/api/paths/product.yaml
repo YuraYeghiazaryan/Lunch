@@ -24,14 +24,13 @@ manageProductDetails:
     operationId: editProductDetails
     description: Edit product details
     parameters:
-      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/ProductIdPath"
     requestBody:
       required: true
       content:
         application/json:
           schema:
-            $ref: "../components/schemas.yaml#/ProductDto"
+            $ref: "../components/schemas.yaml#/ProductDetailsDto"
     responses:
       200:
         description: Product details successfully edited

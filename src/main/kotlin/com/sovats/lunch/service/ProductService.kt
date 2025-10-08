@@ -10,4 +10,8 @@ class ProductService (
     fun createProduct(createdByUserId: Long, orderId: Long, name: String, url: String?, description: String?, quantity: Int, itemPrice: Long) {
         this.productRepository.insert(createdByUserId, orderId, name, url, description, quantity, itemPrice)
     }
+
+    fun editProductDetails(productId: Long, name: String, url: String?, description: String?, quantity: Int, itemPrice: Long) {
+        this.productRepository.updateProductDetails(productId, name, url, description, quantity, itemPrice)
+    }
 }
