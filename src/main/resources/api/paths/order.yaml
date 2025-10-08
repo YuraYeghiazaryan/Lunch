@@ -37,10 +37,6 @@ setOrderStatus:
     responses:
       201:
         description: Order successfully done
-        content:
-          application/json:
-            schema:
-              $ref: "../components/schemas.yaml#/OrderDto"
       400:
         description: Invalid input
       404:
@@ -77,10 +73,6 @@ manageOrderDetails:
     responses:
       200:
         description: Order successfully deleted
-        content:
-          application/json:
-            schema:
-              $ref: "../components/schemas.yaml#/OrderDto"
       404:
         description: Order with provided id does not found or already deleted
     tags:

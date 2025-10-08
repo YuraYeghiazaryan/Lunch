@@ -17,11 +17,14 @@ class OrderController (
 ): OrderApi {
 
     override fun createOrder(xUserId: Long, teamId: Long, orderDetailsDto: OrderDetailsDto): ResponseEntity<OrderDto> {
-        this.orderService.createOrder(teamId, xUserId, orderDetailsDto.contextUrl)
-        return ResponseEntity.status(201).build()
+        val order = this.orderService.createOrder(teamId, xUserId, orderDetailsDto.contextUrl)
+        val orderDto: OrderDto = conversionService.convert(order, OrderDto::class.java)
+            ?: throw IllegalArgumentException("Order could not be created")
+
+        return ResponseEntity.status(201).body(orderDto)
     }
 
-    override fun setOrderStatus(orderId: Long, orderStatusDto: OrderStatusDto): ResponseEntity<OrderDto> {
+    override fun setOrderStatus(orderId: Long, orderStatusDto: OrderStatusDto): ResponseEntity<Unit> {
         val orderStatus: OrderStatus = conversionService.convert(orderStatusDto, OrderStatus::class.java)
             ?: throw IllegalArgumentException("Invalid status ${orderStatusDto.name}")
 
@@ -29,7 +32,7 @@ class OrderController (
         return ResponseEntity.ok().build()
     }
 
-    override fun deleteOrder(orderId: Long): ResponseEntity<OrderDto> {
+    override fun deleteOrder(orderId: Long): ResponseEntity<Unit> {
         this.orderService.deleteOrder(orderId)
         return ResponseEntity.ok().build()
     }

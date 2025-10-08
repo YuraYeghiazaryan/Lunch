@@ -1,7 +1,10 @@
 package com.sovats.lunch.persistence.entity
 
+import com.sovats.lunch.model.OrderStatus
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -28,8 +31,9 @@ class Order (
     @ManyToOne(fetch = FetchType.LAZY)
     val createdByUser: User,
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    val status: String,
+    val status: OrderStatus,
 
     @Column(name = "created_at")
     val createdAt: Timestamp,
