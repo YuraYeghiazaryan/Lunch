@@ -24,9 +24,6 @@ class Product (
     @Column(name = "url")
     val url: String,
 
-    @Column(name = "description")
-    val description: String,
-
     @Column(name = "quantity")
     val quantity: Int,
 

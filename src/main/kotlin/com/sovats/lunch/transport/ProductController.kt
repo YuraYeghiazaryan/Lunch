@@ -17,7 +17,6 @@ class ProductController (
             orderId,
             productDetailsDto.name,
             productDetailsDto.url,
-            productDetailsDto.description,
             productDetailsDto.quantity,
             productDetailsDto.itemPrice
         )
@@ -30,7 +29,6 @@ class ProductController (
             productId,
             productDetailsDto.name,
             productDetailsDto.url,
-            productDetailsDto.description,
             productDetailsDto.quantity,
             productDetailsDto.itemPrice
         )

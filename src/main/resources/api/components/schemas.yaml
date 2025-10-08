@@ -159,9 +159,6 @@ ProductDto:
       type: string
     url:
       type: string
-    description:
-      type: string
-      format: int32
     quantity:
       type: integer
       format: int32
@@ -187,8 +184,6 @@ ProductDetailsDto:
     name:
       type: string
     url:
-      type: string
-    description:
       type: string
     quantity:
       type: integer
