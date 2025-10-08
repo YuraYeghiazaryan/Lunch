@@ -28,4 +28,8 @@ class ProductService (
             sourceProduct.itemPrice
         )
     }
+
+    fun deleteProduct(productId: Long) {
+        this.productRepository.deleteById(productId)
+    }
 }
