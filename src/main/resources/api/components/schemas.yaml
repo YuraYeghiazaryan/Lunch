@@ -164,6 +164,7 @@ ProductDto:
       format: int32
     itemPrice:
       type: integer
+      format: int64
     orderId:
       type: integer
       format: int64

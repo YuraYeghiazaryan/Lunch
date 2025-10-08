@@ -12,8 +12,12 @@ addProduct:
           schema:
             $ref: "../components/schemas.yaml#/ProductDetailsDto"
     responses:
-      200:
+      201:
         description: Product successfully added
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas.yaml#/ProductDto"
       400:
         description: Invalid input
     tags:

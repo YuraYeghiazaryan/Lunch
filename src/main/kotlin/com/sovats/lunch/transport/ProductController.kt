@@ -2,17 +2,20 @@ package com.sovats.lunch.transport
 
 import com.sovats.lunch.api.ProductApi
 import com.sovats.lunch.model.ProductDetailsDto
+import com.sovats.lunch.model.ProductDto
 import com.sovats.lunch.service.ProductService
+import org.springframework.core.convert.ConversionService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class ProductController (
-    private val productService: ProductService
+    private val productService: ProductService,
+    private val conversionService: ConversionService
 ): ProductApi {
 
-    override fun addProduct(xUserId: Long, orderId: Long, productDetailsDto: ProductDetailsDto): ResponseEntity<Unit> {
-        this.productService.createProduct(
+    override fun addProduct(xUserId: Long, orderId: Long, productDetailsDto: ProductDetailsDto): ResponseEntity<ProductDto> {
+        val product = this.productService.createProduct(
             xUserId,
             orderId,
             productDetailsDto.name,
@@ -20,8 +23,10 @@ class ProductController (
             productDetailsDto.quantity,
             productDetailsDto.itemPrice
         )
+        val productDto: ProductDto = conversionService.convert(product, ProductDto::class.java)
+            ?: throw IllegalArgumentException("Product could not be created")
 
-        return ResponseEntity.ok().build()
+        return  ResponseEntity.status(201).body(productDto)
     }
 
     override fun editProductDetails(productId: Long, productDetailsDto: ProductDetailsDto): ResponseEntity<Unit> {
