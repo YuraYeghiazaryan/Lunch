@@ -165,7 +165,7 @@ ProductDto:
     quantity:
       type: integer
       format: int32
-    price:
+    itemPrice:
       type: integer
     orderId:
       type: integer
@@ -177,7 +177,7 @@ ProductDto:
     - id
     - name
     - quantity
-    - price
+    - itemPrice
     - orderId
     - createdByUserId
 
@@ -193,10 +193,10 @@ ProductDetailsDto:
     quantity:
       type: integer
       format: int32
-    price:
+    itemPrice:
       type: integer
-      format: int32
+      format: int64
   required:
     - name
     - quantity
-    - price
+    - itemPrice

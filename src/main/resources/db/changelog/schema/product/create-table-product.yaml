@@ -36,7 +36,7 @@ databaseChangeLog:
                 constraints:
                   nullable: false
             - column:
-                name: price
+                name: item_price
                 type: bigint
                 constraints:
                   nullable: false

@@ -3,6 +3,7 @@ addProduct:
     operationId: addProduct
     description: Add product to order
     parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/OrderIdPath"
     requestBody:
       required: true
