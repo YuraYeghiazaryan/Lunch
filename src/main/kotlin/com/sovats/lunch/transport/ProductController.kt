@@ -36,4 +36,10 @@ class ProductController (
 
         return ResponseEntity.ok().build()
     }
+
+    override fun copyProduct(xUserId: Long, productId: Long, destinationOrderId: Long): ResponseEntity<Unit> {
+        this.productService.copyProduct(xUserId, destinationOrderId,productId)
+
+        return ResponseEntity.ok().build()
+    }
 }

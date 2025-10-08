@@ -29,4 +29,6 @@ interface ProductRepository : JpaRepository<Product, Long> {
         nativeQuery = true
     )
     fun updateProductDetails(productId: Long, name: String, url: String?, description: String?, quantity: Int, itemPrice: Long): Product
+
+    fun findProductById(productId: Long): Product
 }

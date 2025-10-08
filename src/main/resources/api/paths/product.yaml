@@ -44,6 +44,7 @@ manageProductDetails:
     parameters:
       - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/ProductIdPath"
+      - $ref: "../components/parameters.yaml#/DestinationOrderIdQuery"
     responses:
       200:
         description: Product successfully copied

@@ -53,3 +53,11 @@ UserRolePath:
   required: true
   schema:
     $ref: "../components/schemas.yaml#/UserRoleDto"
+
+DestinationOrderIdQuery:
+  name: destinationOrderId
+  in: query
+  required: true
+  schema:
+    type: integer
+    format: int64
