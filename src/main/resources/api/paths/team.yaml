@@ -27,14 +27,13 @@ manageTeamMembers:
     operationId: addTeamMembers
     description: Add users to a team
     parameters:
-      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/TeamIdPath"
     requestBody:
       required: true
       content:
         application/json:
           schema:
-            $ref: "../components/schemas.yaml#/UserIdsDto"
+            $ref: "../components/schemas.yaml#/AddTeamMemberListDto"
     responses:
       200:
         description: Users successfully added to team
@@ -46,7 +45,6 @@ manageTeamMembers:
     operationId: removeTeamMembers
     description: Remove users from a team
     parameters:
-      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/TeamIdPath"
     requestBody:
       required: true
@@ -67,13 +65,9 @@ manageTeamMembersRole:
     operationId: setTeamMemberRole
     description: Set team member role
     parameters:
-      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/TeamIdPath"
-      - name: role
-        in: path
-        required: true
-        schema:
-          $ref: "../components/schemas.yaml#/UserRoleDto"
+      - $ref: "../components/parameters.yaml#/MemberIdPath"
+      - $ref: "../components/parameters.yaml#/UserRolePath"
     response:
       200:
         description: Team member role successfully edited
@@ -83,11 +77,10 @@ manageTeamMembersRole:
       - team
 
 manageTeamDetails:
-  patch:
+  put:
     operationId: editTeamDetails
     description: Edit team details
     parameters:
-      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/TeamIdPath"
     requestBody:
       required: true
@@ -100,11 +93,12 @@ manageTeamDetails:
         description: Team details successfully edited
       404:
         description: Team with provided id does not found
+    tags:
+      - team
   delete:
     operationId: deleteTeam
     description: Delete team
     parameters:
-      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/TeamIdPath"
     responses:
       200:

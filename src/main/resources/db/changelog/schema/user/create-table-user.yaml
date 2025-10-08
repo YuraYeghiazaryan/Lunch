@@ -1,30 +1,21 @@
 databaseChangeLog:
   - changeSet:
-      id: add-role-type
-      author: Yura Yeghiazaryan
-      changes:
-        - sql:
-            dbms: '!h2,  oracle,  mysql, postgresql'
-            endDelimiter: \n
-            splitStatements: true
-            sql: CREATE TYPE role_type AS ENUM('ADMIN', 'USER');
-            stripComments: true
-
-  - changeSet:
       id: create-table-user
       author: Yura Yeghiazaryan
       changes:
         - createSequence:
+            schemaName: user
             sequenceName: user_seq
             startValue: 1
             incrementBy: 1
         - createTable:
+            schemaName: user
             tableName: user
             columns:
               - column:
                   name: id
                   type: bigint
-                  defaultValueComputed: "nextval('user_seq')"
+                  defaultValueComputed: "nextval('user.user_seq')"
                   constraints:
                     primaryKey: true
                     nullable: false

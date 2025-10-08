@@ -11,7 +11,7 @@ class UserToDtoConverter() : Converter<User, UserDto> {
 
     override fun convert(from: User): UserDto {
         return UserDto(
-            id = from.id!!,
+            id = from.id,
             firstName = from.firstName,
             lastName = from.lastName,
             email = from.email,

@@ -1,7 +1,26 @@
 databaseChangeLog:
+
+  # Schemas
   - include:
-      file: db/changelog/schema/create-table-user.yaml
+      file: db/changelog/schema/create-schemas.yaml
+
+
+  # User Schema
   - include:
-      file: db/changelog/schema/create-table-team.yaml
+      file: db/changelog/schema/user/create-table-user.yaml
   - include:
-      file: db/changelog/schema/create-table-team-members.yaml
+      file: db/changelog/schema/user/create-table-user-information.yaml
+
+
+  # Team Schema
+  - include:
+      file: db/changelog/schema/team/create-table-team.yaml
+  - include:
+      file: db/changelog/schema/team/create-table-team-members.yaml
+
+
+  # order Schema
+  - include:
+      file: db/changelog/schema/order/create-table-order.yaml
+  - include:
+      file: db/changelog/schema/product/create-table-product.yaml

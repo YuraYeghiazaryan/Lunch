@@ -4,16 +4,18 @@ databaseChangeLog:
       author: Yura Yeghiazaryan
       changes:
         - createSequence:
+            schemaName: team
             sequenceName: team_seq
             startValue: 1
             incrementBy: 1
         - createTable:
+            schemaName: team
             tableName: team
             columns:
               - column:
                   name: id
                   type: bigint
-                  defaultValueComputed: "nextval('team_seq')"
+                  defaultValueComputed: "nextval('team.team_seq')"
                   constraints:
                     primaryKey: true
                     nullable: false
@@ -35,8 +37,10 @@ databaseChangeLog:
                     nullable: false
 
         - addForeignKeyConstraint:
+            baseTableSchemaName: team
             baseTableName: team
             baseColumnNames: created_by_user_id
+            referencedTableSchemaName: user
             referencedTableName: user
             referencedColumnNames: id
             constraintName: fk_team_created_by_user

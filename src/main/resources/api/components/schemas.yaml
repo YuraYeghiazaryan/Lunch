@@ -21,19 +21,19 @@ SignupDto:
   description: Data for user registration
   type: object
   properties:
+    email:
+      type: string
     password:
       type: string
     firstName:
       type: string
     lastName:
       type: string
-    email:
-      type: string
   required:
+    - email
     - password
     - firstName
     - lastName
-    - email
 
 SignInDto:
   description: Data for user sign in
@@ -75,6 +75,20 @@ TeamDto:
     - createdByUserId
     - createdAt
 
+AddTeamMemberListDto:
+  type: array
+  items:
+    title: AddTeamMemberDto
+    type: object
+    properties:
+      userId:
+        type: integer
+        format: int64
+      role:
+        $ref: "#/UserRoleDto"
+    required:
+      - userId
+
 UserRoleDto:
   description: User role enum
   type: string
@@ -93,13 +107,6 @@ UserIdsDto:
         format: int64
   required:
     - userIds
-
-CreateOrderDto:
-  description: Needed data for order creation
-  type: object
-  properties:
-    contextUrl:
-      type: string
 
 OrderDto:
   type: object
@@ -128,18 +135,19 @@ OrderDto:
     - createdAt
     - contextUrl
 
+OrderDetailsDto:
+  description: Needed data for order creation
+  type: object
+  properties:
+    contextUrl:
+      type: string
+
 OrderStatusDto:
   description: Order status enum
   type: string
   enum:
     - IN_PROGRESS
     - ORDERED
-
-OrderDetailsDto:
-  type: object
-  properties:
-    contextUrl:
-      type: string
 
 ProductDto:
   type: object
@@ -151,14 +159,12 @@ ProductDto:
       type: string
     url:
       type: string
-    description:
-      type: string
-      format: int32
     quantity:
       type: integer
       format: int32
-    price:
+    itemPrice:
       type: integer
+      format: int64
     orderId:
       type: integer
       format: int64
@@ -169,7 +175,7 @@ ProductDto:
     - id
     - name
     - quantity
-    - price
+    - itemPrice
     - orderId
     - createdByUserId
 
@@ -180,15 +186,13 @@ ProductDetailsDto:
       type: string
     url:
       type: string
-    description:
-      type: string
     quantity:
       type: integer
       format: int32
-    price:
+    itemPrice:
       type: integer
-      format: int32
+      format: int64
   required:
     - name
     - quantity
-    - price
+    - itemPrice

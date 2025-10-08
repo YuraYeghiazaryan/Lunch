@@ -11,10 +11,10 @@ class TeamToDtoConverter() : Converter<Team, TeamDto> {
 
     override fun convert(from: Team): TeamDto {
         return TeamDto(
-            id = from.id!!,
+            id = from.id,
             name = from.name,
-            createdByUserId = from.createdByUser.id!!,
-            createdAt = from.createdAt!!.toLocalDateTime().atOffset(ZoneOffset.UTC),
+            createdByUserId = from.createdByUser.id,
+            createdAt = from.createdAt.toLocalDateTime().atOffset(ZoneOffset.UTC),
         )
     }
 }

@@ -1,0 +1,64 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-order
+      author: Yura Yeghiazaryan
+      changes:
+      - createSequence:
+          schemaName: order
+          sequenceName: order_seq
+          startValue: 1
+          incrementBy: 1
+      - createTable:
+          schemaName: order
+          tableName: order
+          columns:
+            - column:
+                name: id
+                type: bigint
+                defaultValueComputed: "nextval('order.order_seq')"
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: team_id
+                type: bigint
+                constraints:
+                  nullable: false
+            - column:
+                name: created_by_user_id
+                type: bigint
+                constraints:
+                  nullable: false
+            - column:
+                name: status
+                type: varchar(50)
+                defaultValue: IN_PROGRESS
+                constraints:
+                  nullable: false
+            - column:
+                name: created_at
+                type: timestamp
+                defaultValueComputed: CURRENT_TIMESTAMP
+                constraints:
+                  nullable: false
+            - column:
+                name: context_url
+                type: varchar(255)
+
+      - addForeignKeyConstraint:
+          baseTableSchemaName: order
+          baseTableName: order
+          baseColumnNames: team_id
+          referencedTableSchemaName: team
+          referencedTableName: team
+          referencedColumnNames: id
+          constraintName: fk_team_id
+
+      - addForeignKeyConstraint:
+          baseTableSchemaName: order
+          baseTableName: order
+          baseColumnNames: created_by_user_id
+          referencedTableSchemaName: user
+          referencedTableName: user
+          referencedColumnNames: id
+          constraintName: fk_user_id

@@ -10,12 +10,12 @@ import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 
 @Entity
-@Table(name = "`user`")
+@Table(schema = "`user`", name = "`user`")
 class User (
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val id: Long,
 
     @Column(name = "email")
     val email: String,
@@ -23,10 +23,10 @@ class User (
     @Column(name = "password")
     val password: String,
 
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     val firstName: String,
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     val lastName: String,
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

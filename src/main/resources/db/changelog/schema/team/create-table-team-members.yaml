@@ -4,6 +4,7 @@ databaseChangeLog:
       author: Yura Yeghiazaryan
       changes:
         - createTable:
+            schemaName: team
             tableName: team_members
             columns:
               - column:
@@ -19,24 +20,32 @@ databaseChangeLog:
               - column:
                   name: role
                   type: varchar(50)
+                  defaultValue: USER
                   constraints:
                     nullable: false
 
         - addPrimaryKey:
+            schemaName: team
             tableName: team_members
             columnNames: team_id, user_id
             constraintName: pk_team_members
 
         - addForeignKeyConstraint:
+            baseTableSchemaName: team
             baseTableName: team_members
             baseColumnNames: team_id
+            referencedTableSchemaName: team
             referencedTableName: team
             referencedColumnNames: id
             constraintName: fk_team_members_team
+            onDelete: CASCADE
 
         - addForeignKeyConstraint:
+            baseTableSchemaName: team
             baseTableName: team_members
             baseColumnNames: user_id
+            referencedTableSchemaName: user
             referencedTableName: user
             referencedColumnNames: id
             constraintName: fk_team_members_user
+            onDelete: CASCADE

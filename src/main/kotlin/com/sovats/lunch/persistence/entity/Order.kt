@@ -1,8 +1,10 @@
 package com.sovats.lunch.persistence.entity
 
-import com.sovats.lunch.model.UserRole
+import com.sovats.lunch.model.OrderStatus
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -14,31 +16,31 @@ import jakarta.persistence.Table
 import java.sql.Timestamp
 
 @Entity
-@Table(schema = "team", name = "team")
-class Team(
+@Table(schema = "order", name = "order")
+class Order (
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
 
-    @Column(name = "name")
-    var name: String,
+    @JoinColumn(name = "team_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    val team: Team,
 
     @JoinColumn(name = "created_by_user_id")
     @ManyToOne(fetch = FetchType.LAZY)
     val createdByUser: User,
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    val status: OrderStatus,
+
     @Column(name = "created_at")
     val createdAt: Timestamp,
 
-    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
-    val teamMembers: MutableSet<TeamMember>,
-) {
-    val members: Set<Members>
-        get() = teamMembers.map { Members(it.user, it.role) }.toSet()
-}
+    @Column(name = "context_url")
+    val contextUrl: String,
 
-data class Members(
-    val user: User,
-    val role: UserRole
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    val products: MutableSet<Product>,
 )
