@@ -14,6 +14,7 @@ class TeamService(
     private val teamRepository: TeamRepository,
     private val teamMemberRepository: TeamMemberRepository
 ) {
+
     @Transactional
     fun createTeam(name: String, createdByUserId: Long): Team {
         val team: Team = teamRepository.insert(name, createdByUserId)

@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 import java.sql.Timestamp
 
@@ -35,4 +36,7 @@ class Order (
 
     @Column(name = "context_url")
     val contextUrl: String,
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    val products: MutableSet<Product>,
 )

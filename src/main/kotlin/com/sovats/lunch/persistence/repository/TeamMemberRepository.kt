@@ -41,7 +41,5 @@ interface TeamMemberRepository: JpaRepository<TeamMember, TeamMemberId> {
     )
     fun updateRole(teamId: Long, userId: Long, role: String): TeamMember
 
-    fun findByTeamIdAndUserId(teamId: Long, userId: Long): TeamMember?
-    fun findByTeamId(teamId: Long): List<TeamMember>
     fun deleteByTeamIdAndUserIdIn(teamId: Long, userIds: List<Long>)
 }

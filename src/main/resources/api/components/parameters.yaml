@@ -23,6 +23,21 @@ TeamIdPath:
     type: integer
     format: int64
 
+MemberIdPath:
+  name: memberId
+  in: path
+  required: true
+  schema:
+    type: integer
+    format: int64
+
+UserRolePath:
+  name: roleDto
+  in: path
+  required: true
+  schema:
+    $ref: "../components/schemas.yaml#/UserRoleDto"
+
 OrderIdPath:
   name: orderId
   in: path
@@ -38,21 +53,6 @@ ProductIdPath:
   schema:
     type: integer
     format: int64
-
-MemberIdPath:
-  name: memberId
-  in: path
-  required: true
-  schema:
-    type: integer
-    format: int64
-
-UserRolePath:
-  name: roleDto
-  in: path
-  required: true
-  schema:
-    $ref: "../components/schemas.yaml#/UserRoleDto"
 
 DestinationOrderIdQuery:
   name: destinationOrderId

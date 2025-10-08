@@ -8,15 +8,21 @@ servers:
   - url: /api/v1
 
 paths:
+
+  # User paths
   /user/{id}:
     $ref: "./paths/user.yaml#/getUser"
 
+
+  # Auth paths
   /auth/signup:
     $ref: "./paths/auth.yaml#/signup"
 
   /auth/signin:
     $ref: "./paths/auth.yaml#/signIn"
 
+
+  # Team paths
   /team:
     $ref: "./paths/team.yaml#/createTeam"
 
@@ -29,6 +35,8 @@ paths:
   /team/{teamId}/member/{memberId}/role/{roleDto}:
     $ref: "./paths/team.yaml#/manageTeamMembersRole"
 
+
+  # Order paths
   /team/{teamId}/order:
     $ref: "./paths/order.yaml#/order"
 
@@ -38,6 +46,8 @@ paths:
   /order/{orderId}:
     $ref: "./paths/order.yaml#/manageOrderDetails"
 
+
+  # Order paths
   /order/{orderId}/product:
     $ref: "./paths/product.yaml#/addProduct"
 

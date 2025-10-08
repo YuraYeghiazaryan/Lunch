@@ -7,7 +7,6 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.OneToMany
-import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
 
 @Entity
@@ -15,12 +14,7 @@ import jakarta.persistence.Table
 class User (
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq_gen")
-    @SequenceGenerator(
-        name = "user_seq_gen",
-        sequenceName = "user.user_seq",
-        allocationSize = 1
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
 
     @Column(name = "email")

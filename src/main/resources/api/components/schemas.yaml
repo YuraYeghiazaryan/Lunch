@@ -75,14 +75,6 @@ TeamDto:
     - createdByUserId
     - createdAt
 
-UserRoleDto:
-  description: User role enum
-  type: string
-  enum:
-    - ADMIN
-    - USER
-    - GUEST
-
 AddTeamMemberListDto:
   type: array
   items:
@@ -97,6 +89,14 @@ AddTeamMemberListDto:
     required:
       - userId
 
+UserRoleDto:
+  description: User role enum
+  type: string
+  enum:
+    - ADMIN
+    - USER
+    - GUEST
+
 UserIdsDto:
   type: object
   properties:
@@ -107,13 +107,6 @@ UserIdsDto:
         format: int64
   required:
     - userIds
-
-OrderDetailsDto:
-  description: Needed data for order creation
-  type: object
-  properties:
-    contextUrl:
-      type: string
 
 OrderDto:
   type: object
@@ -141,6 +134,13 @@ OrderDto:
     - status
     - createdAt
     - contextUrl
+
+OrderDetailsDto:
+  description: Needed data for order creation
+  type: object
+  properties:
+    contextUrl:
+      type: string
 
 OrderStatusDto:
   description: Order status enum

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service
 class OrderService(
     private val orderRepository: OrderRepository,
 ) {
+
     fun createOrder(teamId: Long, createdByUserId: Long, contextUrl: String?) {
         orderRepository.insert(teamId, createdByUserId, contextUrl)
     }
