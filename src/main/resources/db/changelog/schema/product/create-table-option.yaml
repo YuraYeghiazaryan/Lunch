@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-option
+      author: Yura Yeghiazaryan
+      changes:
+        - createSequence:
+            schemaName: product
+            sequenceName: option_seq
+            startValue: 1
+            incrementBy: 1
+        - createTable:
+            schemaName: product
+            tableName: option
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  defaultValueComputed: "nextval('product.option_seq')"
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar
+                  constraints:
+                    nullable: false
