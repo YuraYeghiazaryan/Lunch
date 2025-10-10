@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 interface TeamMemberRepository: JpaRepository<TeamMember, TeamMemberId> {
     @Query(
         """
-            INSERT INTO team.team_members (team_id, user_id) 
+            INSERT INTO team.team_member (team_id, user_id) 
             VALUES (:teamId, :userId)
             RETURNING *
         """,
@@ -22,7 +22,7 @@ interface TeamMemberRepository: JpaRepository<TeamMember, TeamMemberId> {
 
     @Query(
         """
-            INSERT INTO team.team_members (team_id, user_id, role) 
+            INSERT INTO team.team_member (team_id, user_id, role) 
             VALUES (:teamId, :userId, :role)
             RETURNING *
         """,
@@ -32,7 +32,7 @@ interface TeamMemberRepository: JpaRepository<TeamMember, TeamMemberId> {
 
     @Query(
         """
-            UPDATE team.team_members 
+            UPDATE team.team_member
             SET role = :role 
             WHERE team_id = :teamId AND user_id = :userId
             RETURNING *

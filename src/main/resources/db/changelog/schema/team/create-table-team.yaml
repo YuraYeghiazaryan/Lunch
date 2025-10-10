@@ -43,4 +43,4 @@ databaseChangeLog:
             referencedTableSchemaName: user
             referencedTableName: user
             referencedColumnNames: id
-            constraintName: fk_team_created_by_user
+            constraintName: fk_user_id

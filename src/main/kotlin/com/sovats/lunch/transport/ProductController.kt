@@ -51,4 +51,9 @@ class ProductController (
         this.productService.deleteProduct(productId)
         return ResponseEntity.ok().build()
     }
+
+    override fun addOptionToProduct(productId: Long, productOptionName: String): ResponseEntity<Unit> {
+        productService.addOptionToProduct(productId, productOptionName)
+        return ResponseEntity.ok().build()
+    }
 }

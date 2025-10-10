@@ -61,3 +61,10 @@ DestinationOrderIdQuery:
   schema:
     type: integer
     format: int64
+
+ProductOptionQuery:
+  name: productOptionName
+  in: query
+  required: true
+  schema:
+    type: string
