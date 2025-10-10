@@ -16,7 +16,7 @@ databaseChangeLog:
   - include:
       file: db/changelog/schema/team/create-table-team.yaml
   - include:
-      file: db/changelog/schema/team/create-table-team-members.yaml
+      file: db/changelog/schema/team/create-table-team-member.yaml
 
 
   # order Schema

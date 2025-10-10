@@ -1,11 +1,11 @@
 databaseChangeLog:
   - changeSet:
-      id: create-table-team-members
+      id: create-table-team-member
       author: Yura Yeghiazaryan
       changes:
         - createTable:
             schemaName: team
-            tableName: team_members
+            tableName: team_member
             columns:
               - column:
                   name: team_id
@@ -26,26 +26,26 @@ databaseChangeLog:
 
         - addPrimaryKey:
             schemaName: team
-            tableName: team_members
+            tableName: team_member
             columnNames: team_id, user_id
-            constraintName: pk_team_members
+            constraintName: pk_team_member
 
         - addForeignKeyConstraint:
             baseTableSchemaName: team
-            baseTableName: team_members
+            baseTableName: team_member
             baseColumnNames: team_id
             referencedTableSchemaName: team
             referencedTableName: team
             referencedColumnNames: id
-            constraintName: fk_team_members_team
+            constraintName: fk_team_id
             onDelete: CASCADE
 
         - addForeignKeyConstraint:
             baseTableSchemaName: team
-            baseTableName: team_members
+            baseTableName: team_member
             baseColumnNames: user_id
             referencedTableSchemaName: user
             referencedTableName: user
             referencedColumnNames: id
-            constraintName: fk_team_members_user
+            constraintName: fk_user_id
             onDelete: CASCADE

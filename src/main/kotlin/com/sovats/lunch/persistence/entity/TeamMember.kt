@@ -14,7 +14,7 @@ import jakarta.persistence.Table
 import java.io.Serializable
 
 @Entity
-@Table(schema = "team", name = "team_members")
+@Table(schema = "team", name = "team_member")
 @IdClass(TeamMemberId::class) // composite primary key
 class TeamMember(
 

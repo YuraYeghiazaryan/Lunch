@@ -3,66 +3,66 @@ databaseChangeLog:
       id: create-table-product
       author: Yura Yeghiazaryan
       changes:
-      - createSequence:
-          schemaName: product
-          sequenceName: product_seq
-          startValue: 1
-          incrementBy: 1
-      - createTable:
-          schemaName: product
-          tableName: product
-          columns:
-            - column:
-                name: id
-                type: bigint
-                defaultValueComputed: "nextval('product.product_seq')"
-                constraints:
-                  primaryKey: true
-                  nullable: false
-            - column:
-                name: name
-                type: varchar(255)
-                constraints:
-                  nullable: false
-            - column:
-                name: url
-                type: varchar(255)
-            - column:
-                name: quantity
-                type: int
-                constraints:
-                  nullable: false
-            - column:
-                name: item_price
-                type: bigint
-                constraints:
-                  nullable: false
-            - column:
-                name: order_id
-                type: bigint
-                constraints:
-                  nullable: false
-            - column:
-                name: created_by_user_id
-                type: bigint
-                constraints:
-                  nullable: false
-      - addForeignKeyConstraint:
-          baseTableSchemaName: product
-          baseTableName: product
-          baseColumnNames: order_id
-          referencedTableSchemaName: order
-          referencedTableName: order
-          referencedColumnNames: id
-          constraintName: fk_order_id
-          onDelete: CASCADE
+        - createSequence:
+            schemaName: product
+            sequenceName: product_seq
+            startValue: 1
+            incrementBy: 1
+        - createTable:
+            schemaName: product
+            tableName: product
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  defaultValueComputed: "nextval('product.product_seq')"
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: url
+                  type: varchar(255)
+              - column:
+                  name: quantity
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: item_price
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: order_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by_user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableSchemaName: product
+            baseTableName: product
+            baseColumnNames: order_id
+            referencedTableSchemaName: order
+            referencedTableName: order
+            referencedColumnNames: id
+            constraintName: fk_order_id
+            onDelete: CASCADE
 
-      - addForeignKeyConstraint:
-          baseTableSchemaName: product
-          baseTableName: product
-          baseColumnNames: created_by_user_id
-          referencedTableSchemaName: user
-          referencedTableName: user
-          referencedColumnNames: id
-          constraintName: fk_user_id
-          onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableSchemaName: product
+            baseTableName: product
+            baseColumnNames: created_by_user_id
+            referencedTableSchemaName: user
+            referencedTableName: user
+            referencedColumnNames: id
+            constraintName: fk_user_id
+            onDelete: CASCADE
