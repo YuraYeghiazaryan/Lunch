@@ -68,3 +68,18 @@ manageProductDetails:
         description: Product with provided id does not found or already deleted
     tags:
       - product
+
+addOptionToProduct:
+  post:
+    operationId: addOptionToProduct
+    description: Add product option
+    parameters:
+      - $ref: "../components/parameters.yaml#/ProductIdPath"
+      - $ref: "../components/parameters.yaml#/ProductOptionQuery"
+    responses:
+      200:
+        description: Option successfully added
+      400:
+        description: Option can not added
+    tags:
+      - product

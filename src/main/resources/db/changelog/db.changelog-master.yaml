@@ -22,5 +22,11 @@ databaseChangeLog:
   # order Schema
   - include:
       file: db/changelog/schema/order/create-table-order.yaml
+
+  # product Schema
   - include:
       file: db/changelog/schema/product/create-table-product.yaml
+  - include:
+      file: db/changelog/schema/product/create-table-option.yaml
+  - include:
+      file: db/changelog/schema/product/create-table-product-option.yaml

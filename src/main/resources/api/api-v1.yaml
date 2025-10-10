@@ -53,3 +53,6 @@ paths:
 
   /product/{productId}:
     $ref: "./paths/product.yaml#/manageProductDetails"
+
+  /product/{productId}/option:
+    $ref: "./paths/product.yaml#/addOptionToProduct"
