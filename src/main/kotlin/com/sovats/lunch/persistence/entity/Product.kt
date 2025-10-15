@@ -34,7 +34,7 @@ class Product (
     @ManyToOne(fetch = FetchType.LAZY)
     val order: Order,
 
-    @JoinColumn(name = "created_by_user_id")
+    @JoinColumn(name = "creator_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    val createdByUser: User,
+    val creator: User,
 )

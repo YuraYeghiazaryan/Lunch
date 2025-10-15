@@ -13,7 +13,7 @@ class TeamToDtoConverter() : Converter<Team, TeamDto> {
         return TeamDto(
             id = from.id,
             name = from.name,
-            createdByUserId = from.createdByUser.id,
+            creatorId = from.creator.id,
             createdAt = from.createdAt.toLocalDateTime().atOffset(ZoneOffset.UTC),
         )
     }

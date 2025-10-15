@@ -63,7 +63,7 @@ TeamDto:
       format: int64
     name:
       type: string
-    createdByUserId:
+    creatorId:
       type: integer
       format: int64
     createdAt:
@@ -72,7 +72,7 @@ TeamDto:
   required:
     - id
     - name
-    - createdByUserId
+    - creatorId
     - createdAt
 
 AddTeamMemberListDto:
@@ -117,7 +117,7 @@ OrderDto:
     teamId:
       type: integer
       format: int64
-    createdByUserId:
+    creatorId:
       type: integer
       format: int64
     status:
@@ -130,7 +130,7 @@ OrderDto:
   required:
     - id
     - teamId
-    - createdByUserId
+    - creatorId
     - status
     - createdAt
     - contextUrl
@@ -168,7 +168,7 @@ ProductDto:
     orderId:
       type: integer
       format: int64
-    createdByUserId:
+    creatorId:
       type: integer
       format: int64
   required:
@@ -177,7 +177,7 @@ ProductDto:
     - quantity
     - itemPrice
     - orderId
-    - createdByUserId
+    - creatorId
 
 ProductDetailsDto:
   type: object

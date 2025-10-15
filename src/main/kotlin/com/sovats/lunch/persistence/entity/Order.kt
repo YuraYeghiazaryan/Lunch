@@ -27,9 +27,9 @@ class Order (
     @ManyToOne(fetch = FetchType.LAZY)
     val team: Team,
 
-    @JoinColumn(name = "created_by_user_id")
+    @JoinColumn(name = "creator_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    val createdByUser: User,
+    val creator: User,
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")

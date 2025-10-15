@@ -43,7 +43,7 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: created_by_user_id
+                  name: creator_id
                   type: bigint
                   constraints:
                     nullable: false
@@ -60,7 +60,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseTableSchemaName: product
             baseTableName: product
-            baseColumnNames: created_by_user_id
+            baseColumnNames: creator_id
             referencedTableSchemaName: user
             referencedTableName: user
             referencedColumnNames: id

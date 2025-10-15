@@ -11,13 +11,13 @@ import org.springframework.transaction.annotation.Transactional
 interface OrderRepository : JpaRepository<Order, Long> {
     @Query(
         """
-            INSERT INTO "order".order (team_id, created_by_user_id, context_url)
-            VALUES (:teamId, :createdByUserId, :contextUrl)
+            INSERT INTO "order".order (team_id, creator_id, context_url)
+            VALUES (:teamId, :creatorId, :contextUrl)
             RETURNING *
         """,
         nativeQuery = true
     )
-    fun insert(teamId: Long, createdByUserId: Long, contextUrl: String?): Order
+    fun insert(teamId: Long, creatorId: Long, contextUrl: String?): Order
 
     @Query(
         """

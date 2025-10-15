@@ -13,8 +13,8 @@ class ProductService (
     private val productOptionRepository: ProductOptionRepository
 ) {
 
-    fun createProduct(createdByUserId: Long, orderId: Long, name: String, url: String?, quantity: Int, itemPrice: Long): Product {
-        return this.productRepository.insert(createdByUserId, orderId, name, url, quantity, itemPrice)
+    fun createProduct(creatorId: Long, orderId: Long, name: String, url: String?, quantity: Int, itemPrice: Long): Product {
+        return this.productRepository.insert(creatorId, orderId, name, url, quantity, itemPrice)
     }
 
     fun editProductDetails(productId: Long, name: String, url: String?, quantity: Int, itemPrice: Long) {

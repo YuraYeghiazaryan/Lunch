@@ -11,13 +11,13 @@ import org.springframework.transaction.annotation.Transactional
 interface ProductRepository : JpaRepository<Product, Long> {
     @Query(
         """
-            INSERT INTO product.product(created_by_user_id, order_id, name, url, quantity, item_price)
-            VALUES (:createdByUserId, :orderId, :name, :url, :quantity, :itemPrice)
+            INSERT INTO product.product(creator_id, order_id, name, url, quantity, item_price)
+            VALUES (:creatorId, :orderId, :name, :url, :quantity, :itemPrice)
             RETURNING *
         """,
         nativeQuery = true
     )
-    fun insert(createdByUserId: Long, orderId: Long, name: String, url: String?, quantity: Int, itemPrice: Long): Product
+    fun insert(creatorId: Long, orderId: Long, name: String, url: String?, quantity: Int, itemPrice: Long): Product
 
     @Query(
         """

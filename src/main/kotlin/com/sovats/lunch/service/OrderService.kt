@@ -10,8 +10,8 @@ class OrderService(
     private val orderRepository: OrderRepository,
 ) {
 
-    fun createOrder(teamId: Long, createdByUserId: Long, contextUrl: String?): Order {
-        return orderRepository.insert(teamId, createdByUserId, contextUrl)
+    fun createOrder(teamId: Long, creatorId: Long, contextUrl: String?): Order {
+        return orderRepository.insert(teamId, creatorId, contextUrl)
     }
 
     fun setOrderStatus(orderId: Long, orderStatus: OrderStatus) {

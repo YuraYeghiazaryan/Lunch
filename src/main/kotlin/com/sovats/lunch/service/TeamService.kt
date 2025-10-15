@@ -16,10 +16,10 @@ class TeamService(
 ) {
 
     @Transactional
-    fun createTeam(name: String, createdByUserId: Long): Team {
-        val team: Team = teamRepository.insert(name, createdByUserId)
+    fun createTeam(name: String, creatorId: Long): Team {
+        val team: Team = teamRepository.insert(name, creatorId)
         /** Team creator become ADMIN by default */
-        this.addTeamMember(team.id, createdByUserId, UserRole.ADMIN)
+        this.addTeamMember(team.id, creatorId, UserRole.ADMIN)
 
         return team
     }

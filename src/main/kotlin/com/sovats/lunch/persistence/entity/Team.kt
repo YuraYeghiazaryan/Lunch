@@ -24,9 +24,9 @@ class Team(
     @Column(name = "name")
     var name: String,
 
-    @JoinColumn(name = "created_by_user_id")
+    @JoinColumn(name = "creator_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    val createdByUser: User,
+    val creator: User,
 
     @Column(name = "created_at")
     val createdAt: Timestamp,

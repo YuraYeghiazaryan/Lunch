@@ -34,7 +34,7 @@ class OrderToDtoConvertor: Converter<Order, OrderDto> {
         return OrderDto(
             id = from.id,
             teamId = from.team.id,
-            createdByUserId = from.createdByUser.id,
+            creatorId = from.creator.id,
             status = OrderStatusToDtoConvertor().convert(from.status),
             createdAt = from.createdAt.toLocalDateTime().atOffset(ZoneOffset.UTC),
             contextUrl = from.contextUrl

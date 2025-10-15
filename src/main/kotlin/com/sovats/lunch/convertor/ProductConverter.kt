@@ -14,7 +14,7 @@ class ProductToDtoConvertor: Converter<Product, ProductDto> {
             quantity = from.quantity,
             itemPrice = from.itemPrice,
             orderId = from.order.id,
-            createdByUserId = from.createdByUser.id,
+            creatorId = from.creator.id,
             url = from.url
         )
     }

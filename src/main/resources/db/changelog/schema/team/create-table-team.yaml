@@ -26,7 +26,7 @@ databaseChangeLog:
                     nullable: false
                     unique: true
               - column:
-                  name: created_by_user_id
+                  name: creator_id
                   type: bigint
                   constraints:
                     nullable: false
@@ -40,7 +40,7 @@ databaseChangeLog:
         - addForeignKeyConstraint:
             baseTableSchemaName: team
             baseTableName: team
-            baseColumnNames: created_by_user_id
+            baseColumnNames: creator_id
             referencedTableSchemaName: user
             referencedTableName: user
             referencedColumnNames: id
