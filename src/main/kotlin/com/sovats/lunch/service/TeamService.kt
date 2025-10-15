@@ -24,17 +24,17 @@ class TeamService(
         return team
     }
 
-    fun addTeamMember(teamId: Long, userId: Long, role: UserRole?) {
+    @Transactional
+    fun addTeamMember(teamId: Long, userId: Long, role: UserRole) {
         try {
-            /* fixme: add default value generation support by providing null value */
-            if (role == null) {
-                teamMemberRepository.insert(teamId, userId)
-            } else {
-                teamMemberRepository.insert(teamId, userId, role.name)
-            }
+            teamMemberRepository.insert(teamId, userId, role.name)
         } catch (exception: SQLException) {
             println(exception.message)
         }
+    }
+
+    fun isTeamAdmin(userId: Long, teamId: Long): Boolean {
+        return teamMemberRepository.findByTeamIdAndUserIdAndRole(teamId, userId, UserRole.ADMIN) != null
     }
 
     @Transactional

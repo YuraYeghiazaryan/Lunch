@@ -31,24 +31,36 @@ class TeamController (
         return ResponseEntity.status(201).body(teamDto)
     }
 
-    override fun addTeamMembers(teamId: Long, addTeamMemberDto: List<AddTeamMemberDto>): ResponseEntity<Unit> {
+    override fun addTeamMembers(xUserId: Long, teamId: Long, addTeamMemberDto: List<AddTeamMemberDto>): ResponseEntity<Unit> {
+        if (!this.teamService.isTeamAdmin(xUserId, teamId)) {
+            return ResponseEntity.badRequest().body(Unit)
+        }
+
         addTeamMemberDto.forEach { member ->
             teamService.addTeamMember(
                 teamId = teamId,
                 userId = member.userId,
-                role = conversionService.convert(member.role, UserRole::class.java)
+                role = conversionService.convert(member.role, UserRole::class.java) ?: UserRole.USER
             )
         }
 
         return ResponseEntity.ok().build()
     }
 
-    override fun removeTeamMembers(teamId: Long, userIdsDto: UserIdsDto): ResponseEntity<Unit> {
+    override fun removeTeamMembers(xUserId: Long, teamId: Long, userIdsDto: UserIdsDto): ResponseEntity<Unit> {
+        if (!teamService.isTeamAdmin(xUserId, teamId)) {
+            return ResponseEntity.badRequest().body(Unit)
+        }
+
         teamService.removeTeamMembers(teamId, userIdsDto.userIds)
         return ResponseEntity.ok().build()
     }
 
-    override fun setTeamMemberRole(teamId: Long, memberId: Long, roleDto: UserRoleDto): ResponseEntity<Unit> {
+    override fun setTeamMemberRole(xUserId: Long, teamId: Long, memberId: Long, roleDto: UserRoleDto): ResponseEntity<Unit> {
+        if (!teamService.isTeamAdmin(xUserId, teamId)) {
+            return ResponseEntity.badRequest().body(Unit)
+        }
+
         val role: UserRole = conversionService.convert(roleDto, UserRole::class.java)
             ?: throw IllegalArgumentException("Invalid role: $roleDto")
 
@@ -61,7 +73,11 @@ class TeamController (
         return ResponseEntity.ok().build()
     }
 
-    override fun deleteTeam(teamId: Long): ResponseEntity<Unit> {
+    override fun deleteTeam(xUserId: Long, teamId: Long): ResponseEntity<Unit> {
+        if (!teamService.isTeamAdmin(xUserId, teamId)) {
+            return ResponseEntity.badRequest().body(Unit)
+        }
+
         teamService.deleteTeam(teamId)
         return ResponseEntity.ok().build()
     }

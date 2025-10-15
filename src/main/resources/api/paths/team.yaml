@@ -27,6 +27,7 @@ manageTeamMembers:
     operationId: addTeamMembers
     description: Add users to a team
     parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/TeamIdPath"
     requestBody:
       required: true
@@ -45,6 +46,7 @@ manageTeamMembers:
     operationId: removeTeamMembers
     description: Remove users from a team
     parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/TeamIdPath"
     requestBody:
       required: true
@@ -65,6 +67,7 @@ manageTeamMembersRole:
     operationId: setTeamMemberRole
     description: Set team member role
     parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/TeamIdPath"
       - $ref: "../components/parameters.yaml#/MemberIdPath"
       - $ref: "../components/parameters.yaml#/UserRolePath"
@@ -99,6 +102,7 @@ manageTeamDetails:
     operationId: deleteTeam
     description: Delete team
     parameters:
+      - $ref: "../components/parameters.yaml#/UserIdHeader"
       - $ref: "../components/parameters.yaml#/TeamIdPath"
     responses:
       200:

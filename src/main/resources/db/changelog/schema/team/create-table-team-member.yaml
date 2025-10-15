@@ -20,7 +20,6 @@ databaseChangeLog:
               - column:
                   name: role
                   type: varchar(50)
-                  defaultValue: USER
                   constraints:
                     nullable: false
 
