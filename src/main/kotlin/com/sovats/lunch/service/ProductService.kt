@@ -48,4 +48,8 @@ class ProductService (
         /** 3. Insert link */
         productOptionRepository.insert(productId, option.id)
     }
+
+    fun isCreatorOfProduct(userId: Long, productId: Long): Boolean {
+        return this.productRepository.findByIdAndCreatorId(productId, userId) != null
+    }
 }

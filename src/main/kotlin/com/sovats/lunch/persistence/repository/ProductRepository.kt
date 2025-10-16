@@ -31,4 +31,6 @@ interface ProductRepository : JpaRepository<Product, Long> {
     fun updateProductDetails(productId: Long, name: String, url: String?, quantity: Int, itemPrice: Long): Product
 
     fun findProductById(productId: Long): Product
+
+    fun findByIdAndCreatorId(productId: Long, userId: Long): Product?
 }

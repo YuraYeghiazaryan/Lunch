@@ -29,7 +29,10 @@ class ProductController (
         return  ResponseEntity.status(201).body(productDto)
     }
 
-    override fun editProductDetails(productId: Long, productDetailsDto: ProductDetailsDto): ResponseEntity<Unit> {
+    override fun editProductDetails(xUserId: Long, productId: Long, productDetailsDto: ProductDetailsDto): ResponseEntity<Unit> {
+        if (!this.productService.isCreatorOfProduct(xUserId, productId)) {
+            return ResponseEntity.badRequest().body(Unit)
+        }
         this.productService.editProductDetails(
             productId,
             productDetailsDto.name,
@@ -47,12 +50,20 @@ class ProductController (
         return ResponseEntity.ok().build()
     }
 
-    override fun deleteProduct(productId: Long): ResponseEntity<Unit> {
+    override fun deleteProduct(xUserId: Long, productId: Long): ResponseEntity<Unit> {
+        if (!this.productService.isCreatorOfProduct(xUserId, productId)) {
+            return ResponseEntity.badRequest().body(Unit)
+        }
+
         this.productService.deleteProduct(productId)
         return ResponseEntity.ok().build()
     }
 
-    override fun addOptionToProduct(productId: Long, productOptionName: String): ResponseEntity<Unit> {
+    override fun addOptionToProduct(xUserId: Long, productId: Long, productOptionName: String): ResponseEntity<Unit> {
+        if (!this.productService.isCreatorOfProduct(xUserId, productId)) {
+            return ResponseEntity.badRequest().body(Unit)
+        }
+
         productService.addOptionToProduct(productId, productOptionName)
         return ResponseEntity.ok().build()
     }
