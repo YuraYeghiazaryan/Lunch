@@ -47,7 +47,7 @@ paths:
     $ref: "./paths/order.yaml#/manageOrderDetails"
 
 
-  # Order paths
+  # Product paths
   /order/{orderId}/product:
     $ref: "./paths/product.yaml#/addProduct"
 
