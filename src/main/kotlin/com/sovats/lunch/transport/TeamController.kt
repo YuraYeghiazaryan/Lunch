@@ -64,7 +64,7 @@ class TeamController (
         val role: UserRole = conversionService.convert(roleDto, UserRole::class.java)
             ?: throw IllegalArgumentException("Invalid role: $roleDto")
 
-        teamService.setTeamMemberRole(memberId, teamId, role)
+        teamService.setTeamMemberRole(teamId, memberId, role)
         return ResponseEntity.ok().build()
     }
 
