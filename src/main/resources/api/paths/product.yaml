@@ -53,6 +53,10 @@ manageProductDetails:
     responses:
       200:
         description: Product successfully copied
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas.yaml#/ProductDto"
       404:
         description: Product with provided id does not found
     tags:

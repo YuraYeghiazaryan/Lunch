@@ -44,10 +44,13 @@ class ProductController (
         return ResponseEntity.ok().build()
     }
 
-    override fun copyProduct(xUserId: Long, productId: Long, destinationOrderId: Long): ResponseEntity<Unit> {
-        this.productService.copyProduct(xUserId, destinationOrderId,productId)
+    override fun copyProduct(xUserId: Long, productId: Long, destinationOrderId: Long): ResponseEntity<ProductDto> {
+        val product = this.productService.copyProduct(xUserId, destinationOrderId,productId)
 
-        return ResponseEntity.ok().build()
+        val productDto: ProductDto = conversionService.convert(product, ProductDto::class.java)
+            ?: throw IllegalArgumentException("Product could not be created")
+
+        return  ResponseEntity.status(201).body(productDto)
     }
 
     override fun deleteProduct(xUserId: Long, productId: Long): ResponseEntity<Unit> {
