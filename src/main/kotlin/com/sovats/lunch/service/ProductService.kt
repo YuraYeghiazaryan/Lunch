@@ -21,9 +21,9 @@ class ProductService (
         this.productRepository.updateProductDetails(productId, name, url, quantity, itemPrice)
     }
 
-    fun copyProduct(copierUserId: Long, destinationOrderId: Long, sourceProductId: Long) {
+    fun copyProduct(copierUserId: Long, destinationOrderId: Long, sourceProductId: Long): Product {
         val sourceProduct: Product = this.productRepository.findProductById(sourceProductId)
-        this.productRepository.insert(
+        return this.productRepository.insert(
             copierUserId,
             destinationOrderId,
             sourceProduct.name,
