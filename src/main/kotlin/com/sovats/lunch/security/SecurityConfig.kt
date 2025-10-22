@@ -1,4 +1,4 @@
-//package com.sovats.lunch.config
+package com.sovats.lunch.security
 //
 //import org.springframework.context.annotation.Bean
 //import org.springframework.context.annotation.Configuration
